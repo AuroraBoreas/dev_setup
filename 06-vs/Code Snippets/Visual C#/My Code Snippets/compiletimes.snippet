@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+    <!-- compiletime cast -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>compiletime cast</Title>
+            <Shortcut>ctcast</Shortcut>
+            <Description>Code snippet for compiletime type cast</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+                <Literal>
+                    <ID>name1</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>obj1</Default>
+                </Literal>
+                <Literal>
+                    <ID>name2</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>obj2</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[$T$ $name2$ = $name1$ as $T$;
+            if ($name2$ != null)
+            {
+                /*...*/ $end$
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- compiletime check -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>compiletime check</Title>
+            <Shortcut>ctcheck</Shortcut>
+            <Description>Code snippet for compiletime type check</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>x</Default>
+                </Literal>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[if ($name$ is $T$ y)
+            {
+                /*...*/$end$
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- fixeds -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>fixed</Title>
+            <Shortcut>fixed</Shortcut>
+            <Description>Code snippet for fixed</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                    <Function></Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[fixed ($T$* ptr = &pt.x$end$)
+            {
+                /*context is unsafe*/
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+	<!-- general form of methods -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>access object method</Title>
+			<Shortcut>avtmp</Shortcut>
+			<Description>Code snippet for general method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>accessModifier</ID>
+					<ToolTip>Access modifier</ToolTip>
+					<Default>public</Default>
+				</Literal>
+				<Literal>
+					<ID>memberModifier</ID>
+					<ToolTip>Member modifier</ToolTip>
+					<Default>static</Default>
+				</Literal>
+				<Literal>
+					<ID>typeModifier</ID>
+					<ToolTip>Type modifier</ToolTip>
+					<Default>abstract</Default>
+				</Literal>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T1</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T2</Default>
+				</Literal>
+				<Literal>
+					<ID>paramModifier1</ID>
+					<ToolTip>parameter modifier</ToolTip>
+					<Default>ref</Default>
+				</Literal>
+				<Literal>
+					<ID>paramModifier2</ID>
+					<ToolTip>parameter modifier</ToolTip>
+					<Default>out</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[$accessModifier$ $memberModifier$ $typeModifier$ $R$ $name$<$T1$, $T2$>($paramModifier1$ $T1$ arg1, $paramModifier1$ $T2$ arg2$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- generic method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>generic method</Title>
+			<Shortcut>gmeth</Shortcut>
+			<Description>Code snippet for generic method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>accessModifier</ID>
+					<ToolTip>Access modifier</ToolTip>
+					<Default>public</Default>
+				</Literal>
+				<Literal>
+					<ID>memberModifier</ID>
+					<ToolTip>Member modifier</ToolTip>
+					<Default>static</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>constraint1</ID>
+					<ToolTip>Constraint name: struct, class, new(), Type, interface</ToolTip>
+					<Default>class</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[$accessModifier$ $memeberModifier$ $R$ $name$<$T$>($T$ arg) where $T$ : $constraint1$$end$
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- anonymous methods -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>anonymous methods</Title>
+			<Shortcut>anonfunc</Shortcut>
+			<Description>Code snippet for anonymous methods</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T1</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T2</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[delegate ($T1$ arg1, $T2$ arg2$selected$) { /*...*/$selected$};]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- lambda -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>lambda</Title>
+			<Shortcut>lambda</Shortcut>
+			<Description>Code snippet for lambda</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[($arg1$, $arg2$$selected$) => /*...*/$selected$;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- public object method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pobm</Title>
+			<Shortcut>pobm</Shortcut>
+			<Description>Code snippet for public object Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public $R$ $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- IEnumerable method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>itermeth</Title>
+			<Shortcut>itermeth</Shortcut>
+			<Description>Code snippet for IEnumerator method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public IEnumerable<$R$> $name$($T$ start, $T$ end)
+			{
+				/* business logic here */
+				$T$ current = start;
+				while (current < end)
+				{
+					/* business logic here*/
+					yield return current;
+					current++;
+				}
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- public List<object> method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>plom</Title>
+			<Shortcut>plom</Shortcut>
+			<Description>Code snippet for public List Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public List<$R$> $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- public Dictionary<TKey, TElement> method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pmom</Title>
+			<Shortcut>pmom</Shortcut>
+			<Description>Code snippet for public Dictionary Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>U</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>U</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public Dictionary<$R$, $U$> $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- public static object method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>psobm</Title>
+			<Shortcut>psobm</Shortcut>
+			<Description>Code snippet for public static object Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public static $R$ $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- static void method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>static void method</Title>
+			<Shortcut>svmeth</Shortcut>
+			<Description>Code snippet for public static void Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[static void $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- public void method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pvm</Title>
+			<Shortcut>pvm</Shortcut>
+			<Description>Code snippet for public void Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public void $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+
+	<!-- public static void method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>psvm</Title>
+			<Shortcut>psvm</Shortcut>
+			<Description>Code snippet for public static void Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public static void $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- private void method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>prvm</Title>
+			<Shortcut>prvm</Shortcut>
+			<Description>Code snippet for private void Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[private void $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- private static void method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>prsvm</Title>
+			<Shortcut>prsvm</Shortcut>
+			<Description>Code snippet for private static void Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[private static void $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- public HashSet<object> method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>psom</Title>
+			<Shortcut>psom</Shortcut>
+			<Description>Code snippet for public HashSet Method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[
+			public HashSet<$R$> $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- return ref -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>return ref</Title>
+			<Shortcut>refreturn</Shortcut>
+			<Description>Code snippet for general method with return ref</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>accessModifier</ID>
+					<ToolTip>Access modifier</ToolTip>
+					<Default>public</Default>
+				</Literal>
+				<Literal>
+					<ID>memberModifier</ID>
+					<ToolTip>static non-static virtual?</ToolTip>
+					<Default>static</Default>
+				</Literal>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T1</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T2</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[$accessModifier$ $memberModifier$ ref $R$ $name$($T1$ arg1, $T2$ arg2)
+			{
+				/* return ref ...; */
+				throw new NotImplementedException();
+			}
+			/* call the function */
+			// ref var result = ref $name$();]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- operator overloading -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>operator overloading</Title>
+			<Shortcut>opov</Shortcut>
+			<Description>Code snippet for operator overloading</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Operator name</ToolTip>
+					<Default>+</Default>
+				</Literal>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T1</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T2</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public static $R$ operator $name$($T1$ arg1, $T2$ arg2)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- customized type casting -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>operator overload type casting</Title>
+			<Shortcut>opcast</Shortcut>
+			<Description>Code snippet for type casting</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>how</ID>
+					<ToolTip>How? implicit or explicit</ToolTip>
+					<Default>im</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Class name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>U</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>U</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public static $how$plicit operator $T$($U$ u) // convert U -> T
+			{
+				return new $T$() { /*...*/ };
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,12 @@
+{
+	"shell-Docker-Django-entrypoint": {
+		"prefix": "shellDjangoEntryPoint",
+		"body": [
+			"#!/bin/sh\n",
+			"python manage.py migrate --no-input",
+			"python manage.py collectstatic --no-input\n",
+			"gunicorn config.wsgi:application --bind 0.0.0.0:8000",
+		],
+		"description": "shell, entrypoint.sh",
+	}
+}

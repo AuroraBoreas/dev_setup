@@ -1,0 +1,262 @@
+{
+	"rs-println": {
+		"prefix": "cout",
+		"body": [
+			"println!(\"{$1}\"$0);",
+		],
+		"description": "rust, println!()"
+	},
+
+	"rs-loops": {
+		"prefix": "loops",
+		"body": [
+			"'${1:outer}: loop {",
+			"\t'${2:inner}: loop {",
+			"\t\tbreak '$2;",
+			"\t}",
+			"\tbreak '$1;",
+			"}",
+		],
+		"description": "rust, loops (N >= 2) break"
+	},
+
+	"rs-ctor": {
+		"prefix": "ctor",
+		"body": [
+			"pub fn new() -> Self {",
+			"\tSelf{",
+			"\t\t$0",
+			"\t}",
+			"}",
+		],
+		"description": "rust, new, ctor"
+	},
+
+	"rs-gstruct": {
+		"prefix": "gstruct",
+		"body": [
+			"struct ${1:MyStruct}<${1:T},${2:U}> {",
+			"\t${2:field1}: $1",
+			"\t${3:field2}: $2",
+			"}",
+		],
+		"description": "rust, gstruct"
+	},
+
+	"rs-gimpl": {
+		"prefix": "gimpl",
+		"body": [
+			"impl<${1:T}> ${2:Gstruct}<$1> {",
+			"\t$0",
+			"}",
+		],
+		"description": "rust, gimpl"
+	},
+
+	"rs-pobm": {
+		"prefix": "pobm",
+		"body": [
+			"pub fn ${1:methodName}(${2:a}: ${3:T}) -> ${4:R} {",
+			"\t$0",
+			"}",
+		],
+		"description": "rust, pobm"
+	},
+
+	"rs-pvm": {
+		"prefix": "pvm",
+		"body": [
+			"fn ${1:methodName}($2) {",
+			"\t$0",
+			"}",
+		],
+		"description": "rust, pvm()"
+	},
+
+	"rs-gmethod": {
+		"prefix": "gmethod",
+		"body": [
+			"fn ${1:gmethod}<${2:T}, ${3:U}>(arg1: $2, arg2: $3) -> ${4:V} ",
+			"where",
+			"\t$2: Clone + Copy,",
+			"\t$3: Debug + PartialEq,",
+			"{",
+			"\t$0",
+			"}",
+		],
+		"description": "rust, gmethod"
+	},
+
+	"rust-string-toraw": {
+		"prefix": "toraw",
+		"body": [
+			"let ptr = ${1:s}.as_mut_ptr();",
+			"let len = $1.len();",
+			"let capacity = $1.capacity();",
+		],
+		"description": "rust, raw parts of String"
+	},
+
+	"rust-string-fromraw": {
+		"prefix": "fromraw",
+		"body": [
+			"let s = unsafe { String::from_raw_parts(${1:ptr},${2:len},${3:capacity}) };",
+		],
+		"description": "rust, rebuild String from raw parts"
+	},
+
+	"rust-drop": {
+		"prefix": "manualdrop",
+		"body": [
+			"let s = std::mem::ManuallyDrop::new(${1:var});",
+		],
+		"description": "rust, switch to manually dropping"
+	},
+
+	"rust-slice": {
+		"prefix": "slice",
+		"body": [
+			"let slice: &str = &${1:s}[${2:start}..${3:stop}];",
+		],
+		"description": "rust, String indexing / slicing"
+	},
+
+	"rust-const-generic1": {
+		"prefix": "constgeneric1",
+		"body": [
+			"fn ${1:method_name}<T:[U; const N: usize]>(a: T) -> ${2:R} {",
+			"\t$0",
+			"}",
+		],
+		"description": "rust, const generic function / method"
+	},
+
+	"rust-const-generic2": {
+		"prefix": "constgeneric2",
+		"body": [
+			"fn ${1:method_name}<T: std::fmt::Debug, const N: usize>(a: [T;N]) -> ${2:R} {",
+			"\t$0",
+			"}",
+		],
+		"description": "rust, const generic function / method"
+	},
+
+	"rust-trait": {
+		"prefix": "gtrait",
+		"body": [
+			"trait ${1:MyTrait}: ${2:supertrait} {",
+			"\ttype ${3:Item}",
+			"\tconst ${4:CAPACITY}: u32",
+			"\tfn ${5:methodName}(self: &Self),// BRAP", 
+			"}",
+		],
+		"description": "rust, a general trait boilerplate"
+	},
+
+	"rust-mem-sizeof": {
+		"prefix": "sizeof",
+		"body": [
+			"pub trait ${1:IsTrue} {}",
+			"Assert<{ core::mem::size_of::<${2:T}>() < ${3:768} }>: $1;",
+		],
+		"description": "rust, check or contrain memory size of T"
+	},
+
+	"rust-impl-generic-struct": {
+		"prefix": "igtrait4gstruct",
+		"body": [
+			"impl<${1:T}:${2:Sub}<Output=$1>> Sub<Point<$1>> for ${3:MyStruct}<$1> {}",
+			"impl<${1:T}:${2:Sub}<Output=$1>> Sub<Self> for ${3:MyStruct}<$1> {}",
+			"impl<${1:T}:${2:Sub}<Output=$1>> Sub for ${3:MyStruct}<$1> {}",
+		],
+		"description": "rust, impl struct<T> with generic std::ops:*"
+	},
+
+	"rust-impl-orphan-rule": {
+		"prefix": "iorphan",
+		"body": [
+			"impl fmt::Display for ${1:MyStruct} {",
+			"\tfn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {",
+			"\t\twrite!(f, \"\\\"{}\\\"\", self.0.clone() + \", world\")",
+			"\t}",
+			"}",
+		],
+		"description": "rust, impl orphan rule for struct"
+	},
+
+	"rust-impl-From": {
+		"prefix": "from",
+		"body": [
+			"impl From<${1:T}> for ${2:MyStruct} {",
+			"\tfn from(value: $1) -> $2 {",
+			"\t\t$2 {",
+			"\t\t\tvalue$0",
+			"\t\t}",
+			"\t}",
+			"}",
+		],
+		"description": "rust, impl From<T> / T.Into() for struct"
+	},
+
+	"rust-impl-TryFrom": {
+		"prefix": "tryfrom",
+		"body": [
+			"impl TryFrom<${1:T}> for ${2:MyStruct} {",
+			"\ttype Error = ();",
+			"\tfn try_from(value: $1) -> Result<Self,Self::Error> {",
+			"\t\tif $3 {",
+			"\t\t\tOk($2{value})",
+			"\t\t} else {",
+			"\t\t\tErr(())",
+			"\t\t}",
+			"\t}",
+			"}",
+		],
+		"description": "rust, impl TryFrom<T> / T.TryInto() for struct"
+	},
+
+	"rust-iterator": {
+		"prefix": "iterator",
+		"body": [
+			"impl Iterator for ${1:MyStruct} {",
+			"\ttype Item = ${2:T}",
+			"\tfn next(&mut self) -> Option<Self::Item> {",
+			"\t\t$0",
+			"\t}",
+			"}",
+		],
+		"description": "rust, impl Iterator for struct"
+	},
+
+	"rust-if-let": {
+		"prefix": "iflet",
+		"body": [
+			"if let Some(i) = ${1:var} {",
+			"} else {",
+			"}",
+		],
+		"description": "rust, if let"
+	},
+
+	"rust-match-at": {
+		"prefix": "matchat",
+		"body": [
+			"match ${1:msg} {",
+			"\tMessage::Hello{id: id@ 3..=7} => id",
+			"\tMessage::Hello{id: newid@ (10|11|12)} => newid",
+			"\tMessage::Hello{id} => id",
+			"}",
+		],
+		"description": "rust, @ operator creates a variable and holds a value, at the same time, we are testing that value to see if it matches a pattern"
+	},
+
+	"rust-into-iter-mut": {
+		"prefix": "intoitermut",
+		"body": [
+			"into_iter() // consume collection",
+			"iter() // immutable reference",
+			"iter_mut() // mutable reference",
+		],
+		"description": "rust, iterators"
+	},
+}

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- constructor -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>ctor</Title>
+			<Shortcut>ctor</Shortcut>
+			<Description>Code snippet for constructor</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="false">
+					<ID>classname</ID>
+					<ToolTip>Class name</ToolTip>
+					<Function>ClassName()</Function>
+					<Default>ClassNamePlaceholder</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public $classname$ ($end$)
+			{
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- initialize object -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>initialize object</Title>
+            <Shortcut>ctorinit</Shortcut>
+            <Description>Code snippet for object initialization</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>o</Default>
+                </Literal>
+                <Literal>
+                    <ID>arg1</ID>
+                    <ToolTip>parameter name</ToolTip>
+                    <Default>arg1</Default>
+                </Literal>
+                <Literal>
+                    <ID>arg2</ID>
+                    <ToolTip>parameter name</ToolTip>
+                    <Default>arg2</Default>
+                </Literal>
+                <Literal>
+                    <ID>U</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>U</Default>
+                </Literal>
+                <Literal>
+                    <ID>V</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>V</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[$T$ $name$ = new $T$($arg1$, $arg2$$end$)
+            {
+                /* initialize properties or nested initializations */
+                prop1 = new $U$(){},
+                prop2 = new $V$(){}
+            };]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+	<!-- static construct -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>static constructor</Title>
+            <Shortcut>ctorstatic</Shortcut>
+            <Description>Code snippet for static constructor</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[static $T$() // no access modifier, no overload, no args at all!
+            {
+                throw new NotImplementedException()$end$;
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+	<!-- construct this -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>this ctor</Title>
+            <Shortcut>ctorthis</Shortcut>
+            <Description>Code snippet for `slave` ctor comparing to `master` ctor</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+                <Literal>
+                    <ID>U</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>U</Default>
+                </Literal>
+                <Literal>
+                    <ID>V</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>V</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[public $T$($U$ arg1, $V$ arg2$end$) : this(arg1, arg2, 0)
+            {
+                throw new NotImplementedException();
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+	<!-- construct anonymous type -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>anonymous type</Title>
+            <Shortcut>anontype</Shortcut>
+            <Description>Code snippet for anonymous type</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>o</Default>
+                </Literal>
+                <Literal>
+                    <ID>Field1</ID>
+                    <ToolTip>Field name</ToolTip>
+                    <Default>X</Default>
+                </Literal>
+                <Literal>
+                    <ID>Field2</ID>
+                    <ToolTip>Field name</ToolTip>
+                    <Default>Y</Default>
+                </Literal>
+                <Literal>
+                    <ID>Field3</ID>
+                    <ToolTip>Field name</ToolTip>
+                    <Default>Z</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[var $name$ = new {$Field1$=arg1$end$, $Field2$=arg2, $Field3$=arg3};]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

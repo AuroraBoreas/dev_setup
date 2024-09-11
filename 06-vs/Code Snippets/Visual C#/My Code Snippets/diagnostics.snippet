@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+    <!-- Diagnostic interacts with process programmatically -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Diagnostic interacts with process programmatically</Title>
+            <Shortcut>diagprocesses</Shortcut>
+            <Description>Code snippet for Diagnostic interacts with process programmatically</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Diagnostics</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ListAllRunningProcesses()
+            {
+                // Get all the processes on the local machine, ordered by PID.
+                var runningProcs = from proc in Process.GetProcesses(".") orderby proc.Id select proc;
+                // Print out PID and name of each process.
+                foreach(var p in runningProcs)
+                {
+                    string info = $"-> PID: {p.Id}\tName: {p.ProcessName}",
+                    Console.WriteLine(info);
+                }
+                Console.WriteLine("************************************\n");
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Investigate Process's thread set -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Investigate Process's thread set</Title>
+            <Shortcut>diagthreadset</Shortcut>
+            <Description>Code snippet for Investigate Process's thread set</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Diagnostics</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void EnumThreadsForPid(int pID)
+            {
+                Process theProc = null;
+                try
+                {
+                    theProc = Process.GetProcessById(pID);
+                }
+                catch(ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return;
+                }
+                // List out stats for each thread in the specified process.
+                Console.WriteLine("Here are the threads used by: {0}", theProc.ProcessName);
+                ProcessThreadCollection theThreads = theProc.Threads;
+                foreach(ProcessThread pt in theThreads)
+                {
+                    string info = $"-> Thread ID: {pt.Id}\tStart Time: {pt.StartTime.ToShortTimeString()}\tPriority: {pt.PriorityLevel}";
+                    Console.WriteLine(info);
+                }
+                Console.WriteLine("************************************\n");
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Default AppDomain -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Default AppDomain</Title>
+            <Shortcut>appdomaindefault</Shortcut>
+            <Description>Code snippet for Default AppDomain</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void DisplayDADStats()
+            {
+                // Get access to the AppDomain for the current thread.
+                AppDomain defaultAD = AppDomain.CurrentDomain;
+                // Print out various stats about this domain.
+                Console.WriteLine("Name of this domain: {0}", defaultAD.FriendlyName);
+                Console.WriteLine("ID of domain in this process: {0}", defaultAD.Id);
+                Console.WriteLine("Is this the default domain?: {0}", defaultAD.IsDefaultAppDomain());
+                Console.WriteLine("Base directory of this domain: {0}", defaultAD.BaseDirectory);
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- enumerate loaded assemblies -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>enumerate loaded assemblies</Title>
+            <Shortcut>appdomainlistasm</Shortcut>
+            <Description>Code snippet for enumerate loaded assemblies</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+                <Import>
+                    <Namespace>System.Linq</Namespace>
+                </Import>
+                <Import>
+                    <Namespace>System.Collections.Generic</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ListAllAssembliesInAppDomain(AppDomain ad)
+            {
+                IEnumerable<Assembly> loadedAssemblies = from asm in ad.GetAssemblies()
+                    orderby asm.GetName().Name
+                    selecct asm;
+                Console.WriteLine("***** Here are the assemblies loaded in {0} *****\n", defaultAD.FriendlyName);
+                foreach(Assembly a in loadedAssemblies)
+                {
+                    Console.WriteLine("-> Name: {0}", a.GetName().Name);
+                    Console.WriteLine("-> Version: {0}\n", a.GetName().Version);
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Receive Assembly Load Notifications -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Receive Assembly Load Notifications</Title>
+            <Shortcut>appdomainasmldnotification</Shortcut>
+            <Description>Code snippet for Receive Assembly Load Notifications</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void InitDAD()
+            {
+                AppDomain defaultAD = AppDomain.CurrentDomain;
+                defaultAD.AssemblyLoad += (o, s) =>
+                {
+                    Console.WriteLine("{0} has been loaded!", s.LoadedAssembly.GetName().Name);
+                };
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Create New AppDomains -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Create New AppDomains</Title>
+            <Shortcut>appdomaincreate</Shortcut>
+            <Description>Code snippet for Create New AppDomains</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void MakeNewAppDomain()
+            {
+                // Make a new AppDomain in the current process and list loaded assemblies.
+                AppDomain newAD = AppDomain.CreateDomain("SecondAppDomain");
+                ListAllAssembliesInAppDomain(newAD);
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Load Assemblies into custom application domains -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Load Assemblies into custom application domains</Title>
+            <Shortcut>appdomainldasm</Shortcut>
+            <Description>Code snippet for Load Assemblies into custom application domains</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void MakeNewAppDomain()
+            {
+                AppDomain newAD = AppDomain.CreateDomain("SecondAppDomain");
+                try
+                {
+                    // Now load CarLibrary.dll into this new domain.
+                    newAD.Load("CarLibrary");
+                }
+                catch (FileNotFoundException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                ListAllAssembliesInAppDomain(newAD);
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- unload assemblies -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>unload assemblies</Title>
+            <Shortcut>appdomainunldasm</Shortcut>
+            <Description>Code snippet for unload assemblies</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void MakeNewAppDomain()
+            {
+                AppDomain newAD = AppDomain.CreateDomain("SecondAppDomain");
+                newAD.DomainUnload += (o, s) =>
+                    Console.WriteLine("The second AppDomain has been unloaded!");
+                try
+                {
+                    newAD.Load("CarLibrary");
+                }
+                catch (FileNotFoundException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                ListAllAssembliesInAppDomain(newAD);
+                AppDomain.Unload(newAD);
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- inspect object context -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>inspect object context</Title>
+            <Shortcut>objectxinspect</Shortcut>
+            <Description>Code snippet for inspect object context</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Runtime.Remoting.Context</Namespace>
+                </Import>
+                <import>
+                    <Namespace>System.Threading</Namespace>
+                </import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[Context ctx = Thread.CurrentContext;
+            Console.WriteLine("{0} object in context {1}", this.ToString(), ctx.ContextID);
+            foreach(IContextProperty itfCtxProp in ctx.ContextProperties)
+                Console.WriteLine("-> Ctx Prop: {0}", itfCtxProp.Name);
+            ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Diagnostics Process Module Sets -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Diagnostics Process Module Sets</Title>
+            <Shortcut>diagmoduleset</Shortcut>
+            <Description>Code snippet for Diagnostics Process Module Sets</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void EnumModsForPid(int pID)
+            {
+                Process theProc = null;
+                try
+                {
+                    theProc = Process.GetProcessById(pID);
+                }
+                catch(ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return;
+                }
+                Console.WriteLine("Here are the loaded modules for: {0}", theProc.ProcessName);
+                ProcessModuleCollection theMods = theProc.Modules;
+                foreach(ProcessModule pm in theMods)
+                {
+                    string info = $"-> Mod Name: {pm.ModuleName}";
+                    Console.WriteLine(info);
+                }
+                Console.WriteLine("************************************\n");
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Diagnostics Start and Kill a process -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Diagnostics Start and Kill a process</Title>
+            <Shortcut>diagstartkill</Shortcut>
+            <Description>Code snippet for Diagnostics Start and Kill a process</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void StartAndKillProcess()
+            {
+                Process ffProc = null;
+                // Launch Firefox, and go to Facebook, with maximized window.
+                try
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo("Edge.exe", "www.bing.cn");
+                    startInfo.WindowStyle = ProcessWindowStyle.Maximized;
+                    ffProc = Process.Start(startInfo);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- dynamic works with Activator.CreateInstance -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>dynamic works with Activator.CreateInstance</Title>
+            <Shortcut>dynamicactivator</Shortcut>
+            <Description>Code snippet for dynamic works with Activator.CreateInstance</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>t</ID>
+                    <ToolTip>Type variable name</ToolTip>
+                    <Default>t</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Assembly name</ToolTip>
+                    <Default>MathLibrary.SimpleMath</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>MethodName</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[dynamic obj = Activator.CreateInstance(t);
+            obj.$MethodName$($end$);]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

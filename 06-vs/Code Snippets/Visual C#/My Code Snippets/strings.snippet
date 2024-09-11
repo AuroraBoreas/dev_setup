@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- StringBuilder -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>sb</Title>
+			<Shortcut>sb</Shortcut>
+			<Description>Code snippet for System.Text.StringBuilder</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>object name</ToolTip>
+					<Default>sb</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[StringBuilder $name$ = new StringBuilder();]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- public override string ToString() method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>tostring</Title>
+			<Shortcut>tostring</Shortcut>
+			<Description>Code snippet for ToString()</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public override string ToString()
+			{
+				throw new NotImplementedException()$end$;
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- String Intropolation -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>fs</Title>
+			<Shortcut>fs</Shortcut>
+			<Description>Code snippet for string Intropolation</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[$$"{$end$}"]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- String Format -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>fmt</Title>
+			<Shortcut>fmt</Shortcut>
+			<Description>Code snippet for string.Format</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[string.Format("{0}, {1}", $end$);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

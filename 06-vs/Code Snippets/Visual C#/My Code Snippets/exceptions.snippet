@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+    <!-- user-defined Exception -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>user-defined Exception</Title>
+            <Shortcut>except</Shortcut>
+            <Description>Code snippet for user-defined Exception</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Type name: ApplicationException or Exception</ToolTip>
+                    <Default>ApplicationException</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[class $name$Exception: $T$
+            {
+                // private string MessageDetails = string.Empty;
+                public DateTime ErrorTimeStamp {get; set;}
+                public string CauseOfError {get; set;} = string.Empty;
+                public $name$Exception() {}
+                public $name$Exception(string message, DateTime time, string cause) : base(message)
+                {
+                    // MessageDetails = message;
+                    ErrorTimeStamp = time;
+                    CauseOfError = cause;
+                }
+                public override string Message => $$"Car Error Message: {base.Message}";
+            }
+            /* usage:
+            //embed it into a class method
+            partial class $name$
+            {
+                public void MethodName()
+                {
+                    $name$Exception ex = new $name$Exception("message", DateTime.Now, "Burnt");
+                    throw ex;
+                }
+            }
+            //which you will call with surrounding try...catch...finally blocks
+            catch ($name$Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine($$"{ex.ErrorTimeStamp}, {ex.CauseOfError}");
+            }
+            */]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- customized Exception rethrow -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>user-defined Exception rethrow</Title>
+            <Shortcut>exceptrethrow</Shortcut>
+            <Description>Code snippet for user-defined Exception rethrow</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Type name: ApplicationException or Exception</ToolTip>
+                    <Default>ApplicationException</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[[Serializable]
+            public class $name$Exception : $T$
+            {
+                // public DateTime ErrorTimeStamp { get; set; }
+                // public string CauseOfError { get; set; }
+                public $name$Exception() {}
+                public $name$Exception(string message) : base(message) {}
+                public $name$Exception(string message, System.Exception inner) : base(message, inner) {}
+                protected $name$Exception(
+                    System.Runtime.Serialization.SerializationInfo info,
+                    System.Runtime.Serialization.StreamingContext context
+                ): base(info, context) {}
+                public override string Message => $$"$name$ Error Message: {base.Message}";
+            }
+            /* usage
+            catch (CarIsDeadException e)
+            {
+                try
+                {
+                    // business logic here
+                    FileStream fs = File.Open(@"C:\carErrors.txt", FileMode.Open);
+                }
+                catch (Exception e2)
+                {
+                    // Throw an exception that records the new exception,
+                    // as well as the message of the first exception.
+                    throw new $name$Exception(e.Message, e2);
+                }
+            }
+            */]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- try...catch..finally -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>trycf</Title>
+			<Shortcut>trycf</Shortcut>
+			<Description>Code snippet for try catch finally</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[try
+            {	        
+                $selected$
+            }
+            catch (Exception _)
+            {
+                $selected$
+            }
+            finally
+            {
+                $end$
+            }]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

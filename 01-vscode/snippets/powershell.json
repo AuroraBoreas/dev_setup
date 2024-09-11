@@ -1,0 +1,15 @@
+{
+	"pwsh-error": {
+		"prefix": "pwsherror",
+		"body": [
+			"# CEEFIT",
+			"## Category",
+			"## ErrorDetails",
+			"## Exception",
+			"## FullQualifiedErrorId",
+			"## InvocationInfo",
+			"## TargetObject",
+		],
+		"description": "pwsh, error",
+	},
+}

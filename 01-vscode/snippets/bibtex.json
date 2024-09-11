@@ -1,0 +1,19 @@
+{
+	"latexbib": {
+		"prefix": "latexbib",
+		"body": [
+			"% !TEX TS-program = BibTex",
+			"% !TEX encoding = UTF-8 Unicode\n",
+			"@article{",
+			"    Tina2023,",
+			"    Author = {Z.L., \\dots},",
+			"    Title = {The hunting handicap: costly signaling in human foraging strategies},",
+			"    Journal = {Behavioral Ecology and Sociobiology},",
+			"    Volume = {50},",
+			"    Pages = {9-19},",
+			"    Year = {2023}",
+			"}",
+		],
+		"description": "LaTeX, BibTeX",
+	},
+}

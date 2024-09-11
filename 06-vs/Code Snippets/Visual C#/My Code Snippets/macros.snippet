@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- #if -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>macro if</Title>
+			<Shortcut>macroif</Shortcut>
+			<Description>Code snippet for macro if else endif</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[#if true
+			$selected$
+			#else
+			$end$
+			#endif
+			]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- #pragma -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>macro pragma</Title>
+			<Shortcut>macropragma</Shortcut>
+			<Description>Code snippet for pragma</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>pragma name</ToolTip>
+					<Default>warning</Default>
+				</Literal>
+				<Literal>
+					<ID>args</ID>
+					<ToolTip>args</ToolTip>
+					<Default>disable 414, CS3021</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[#pragma $name$ $args$
+			[CLSCompliant(false)]
+			]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- #warning -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>macro warning</Title>
+			<Shortcut>macrowarn</Shortcut>
+			<Description>Code snippet for warning</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>macro</ID>
+					<ToolTip>Marco name</ToolTip>
+					<Default>warning</Default>
+				</Literal>
+				<Literal>
+					<ID>directive</ID>
+					<ToolTip>directive name</ToolTip>
+					<Default>Deprecated code in this method</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[#$macro$ $directive$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

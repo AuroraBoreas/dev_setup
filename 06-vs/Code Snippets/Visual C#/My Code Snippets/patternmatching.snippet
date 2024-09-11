@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- pattern matching value -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pmatchv</Title>
+			<Shortcut>pmatchv</Shortcut>
+			<Description>Code snippet for pattern matching discrete values</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+					<ID>name</ID>
+					<ToolTip>Variable name</ToolTip>
+					<Default>name</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[switch ($name$)
+			{
+                case 1:
+                    Console.WriteLine("Your choice is an integer {0}.", 1); break;
+                case 2: 
+                    Console.WriteLine("Your choice is a string. {0}", 2); break;
+                case 3: 
+                    Console.WriteLine("Your choice is a decimal. {0}", 3); break;
+                case 4:
+                    Console.WriteLine("Your choice is a boolean. {0}", 4); break;
+                _:
+                    throw new ArgumentException("Invalid string value for command", nameof(name)); break;
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- pattern matching class -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pmatchc</Title>
+			<Shortcut>pmatchc</Shortcut>
+			<Description>Code snippet for pattern matching class</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Variable name</ToolTip>
+					<Default>name</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[switch ($name$)
+			{
+				int i => i * i,
+				string s => "hello " + s,
+				decimal d => d + 1,
+				bool b => b ? 1 : 0,
+				_ => throw new ArgumentException("Invalid string value", nameof(name)),
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- pattern matching list -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pmatchl</Title>
+			<Shortcut>pmatchl</Shortcut>
+			<Description>Code snippet for pattern matching list</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Variable name</ToolTip>
+					<Default>order</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public record Order(int Items, decimal Cost);
+			switch ($name$)
+			{
+				[_, "DEPOSIT", _, var amount]     => decimal.Parse(amount),
+				[_, "WITHDRAWAL", .., var amount] => -decimal.Parse(amount),
+				[_, "INTEREST", var amount]       => decimal.Parse(amount),
+				[_, "FEE", var fee]               => -decimal.Parse(fee),
+				_                                 => throw new InvalidOperationException($"Record {string.Join(", ", transaction)} is not in the expected format!"),
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- pattern matching multiple inputs -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pmatchm</Title>
+			<Shortcut>pmatchm</Shortcut>
+			<Description>Code snippet for pattern matching multiple inputs</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Variable name</ToolTip>
+					<Default>order</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public record Order(int Items, decimal Cost);
+			switch ($name$)
+			{
+				( > 10,  > 1000.00m) => 0.10m,
+				{ Items: > 5, Cost: > 500.00m } => 0.05m,
+				{ Cost: > 250.00m } => 0.02m,
+				null => throw new ArgumentNullException(nameof(order), "Can't calculate discount on null order"),
+				var someObject => 0m,
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- pattern matching relational -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pmatchr</Title>
+			<Shortcut>pmatchr</Shortcut>
+			<Description>Code snippet for pattern matching relational</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Variable name</ToolTip>
+					<Default>name</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[string result = ($name$) switch 
+			{
+				(> 32) and (< 212) => "liquid",
+				< 32 => "solid",
+				> 212 => "gas",
+				32 => "solid/liquid transition",
+				212 => "liquid / gas transition",
+				_ => "gas",
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

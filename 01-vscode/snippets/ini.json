@@ -1,0 +1,16 @@
+{
+	"pytest-config": {
+		"prefix": "pytest-config-markers",
+		"body": [
+			"[pytest]",
+			"markers =",
+			"\t${1:marker_name}: ${2:marker_description}",
+			"addopts =",
+			"\t--strict-markers", 
+			"\t-ra",
+			"xfail_strict = true",
+			"testpaths = tests",
+		],
+		"description": "pytest, pytest.ini, markers customization"
+	},
+}

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- enum constructor -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>enum constructor</Title>
+			<Shortcut>enumctor</Shortcut>
+			<Description>Code snippet for enum constructor</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Enum name</ToolTip>
+					<Default>MyEnum</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>byte</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[enum $name$ : $T$
+			{
+				$selected$
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- Enum Format -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Enum Format</Title>
+			<Shortcut>enumfmt</Shortcut>
+			<Description>Code snippet for Enum.Format</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>DayOfWeek</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[Enum.Format(typeof($T$), $T$.Fri, "d"$end$);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- loop through Enum -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>loop through Enum</Title>
+			<Shortcut>enumloop</Shortcut>
+			<Description>Code snippet for loop through Enum</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>MyEnum</Default>
+					<Function>...</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[foreach ($T$ item in Enum.GetValues(typeof($T$)))
+			{
+				/*...*/$end$
+				\bin\x64\Release\ConsoleApp3_ReviewProCSharp7.exe
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

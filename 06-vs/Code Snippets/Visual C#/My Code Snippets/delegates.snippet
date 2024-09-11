@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- generic delegate -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>generic delegate</Title>
+			<Shortcut>gdelegate</Shortcut>
+			<Description>Code snippet for generic delegate</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>void</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Delegate name</ToolTip>
+					<Default>DelegateName</Default>
+				</Literal>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T1</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T2</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public delegate $R$ $name$<$T1$, $T2$>($T1$ arg1, $T2$ arg2$end$);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- customized delegate -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>customized delegate</Title>
+            <Shortcut>cdelegate</Shortcut>
+            <Description>Code snippet for customized delegate</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>My</Default>
+                </Literal>
+                <Literal>
+                    <ID>ParamModifier1</ID>
+                    <ToolTip>Parameter modifier: out or ref or none</ToolTip>
+                    <Default>ref</Default>
+                </Literal>
+                <Literal>
+                    <ID>ParamModifier2</ID>
+                    <ToolTip>Parameter modifier: out or ref or none</ToolTip>
+                    <Default>out</Default>
+                </Literal>
+                <Literal>
+                    <ID>ParamModifiern</ID>
+                    <ToolTip>Parameter modifier: out or ref or none</ToolTip>
+                    <Default></Default>
+                </Literal>
+                <Literal>
+                    <ID>T1</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T1</Default>
+                </Literal>
+                <Literal>
+                    <ID>T2</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T2</Default>
+                </Literal>
+                <Literal>
+                    <ID>Tn</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>Tn</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[class $name$Delegate: MulticastDelegate
+            {
+                public $R$ Invoke($ParamModifier1$ $T1$ arg1, $ParamModifier2$ $T2$ arg2, $ParamModifiern$ $Tn$ argn);
+                public IAsyncResult BeginInvoke($ParamModifier1$ $T1$ arg1, $ParamModifier2$ $T2$ arg2, $ParamModifiern$ $Tn$ argn, AsyncCallback cb, object state);
+                public $R$ EndInvoke(IAsyncResult result);
+            }
+            /* usage
+            public $name$ $R$ myDelegate($ParamModifier1$ $T1$ arg1, $ParamModifier2$ $T2$ arg2, $ParamModifiern$ $Tn$ argn);
+            */]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

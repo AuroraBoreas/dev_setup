@@ -1,0 +1,31 @@
+{
+	"cs-class-modifiers": {
+		"prefix": "cs-class-modifiers",
+		"body": [
+			"/* 👩‍🚀🚀🌔C# Modifiers (A T M V):",
+			"Access modifiers: public, private, protected, internal and protected internal",
+			"Type modifier: abstract, seal, partial",
+			"Member modifier: abstract, virtual, static, seal, new, override",
+			"Visibility modifier: public, internal",
+			"*/",
+		],
+		"description": "C#, class modifiers"
+	},
+
+	"dotnet-cmd-publish-standalone": {
+		"prefix": "dotnet-publish-standalone",
+		"body": [
+			"dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true",
+		],
+		"description": "dotnet, Command, publish cross-platform + standalone App"
+	},
+
+	"dotnet-cmd-publish-container": {
+		"prefix": "dotnet-publish-container",
+		"body": [
+			"dotnet publish -c Release --os linux --arch x64 -p:PublishProfile=defaultContainer",
+		],
+		"description": "dotnet, Command, publish as container"
+	},
+	
+}

@@ -1,0 +1,17 @@
+{
+	"batch-display-subdirs": {
+		"prefix": "batchDisplaySubdirs",
+		"body": [
+			"for /r /d %d in (\"*${1:py}*\") do @if exist \"%d\" echo \"%d\" ",
+		],
+		"description": "batch, display sub-directories recursively",
+	},
+	
+	"batch-Remove-subdirs": {
+		"prefix": "batchRemoveSubdirs",
+		"body": [
+			"for /r /d %d in (\"*${1:py}*\") do rmdir /s /q \"%d\"",
+		],
+		"description": "batch, Remove sub-directories recursively",
+	}
+}

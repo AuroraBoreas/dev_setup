@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- generic class -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>generic class</Title>
+			<Shortcut>gclass</Shortcut>
+			<Description>Code snippet for generic class</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>class name</ToolTip>
+					<Default>ClassName</Default>
+				</Literal>
+				<Literal>
+					<ID>K</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>K</Default>
+				</Literal>
+				<Literal>
+					<ID>V</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>V</Default>
+				</Literal>
+				<Literal>
+					<ID>constraint1</ID>
+					<ToolTip>Constraint name</ToolTip>
+					<Default>class</Default>
+				</Literal>
+				<Literal>
+					<ID>constraint2</ID>
+					<ToolTip>Constraint name</ToolTip>
+					<Default>new()</Default>
+				</Literal>
+				<Literal>
+					<ID>constraint3</ID>
+					<ToolTip>Constraint name</ToolTip>
+					<Default>struct</Default>
+				</Literal>
+				<Literal>
+					<ID>constraint4</ID>
+					<ToolTip>Constraint name</ToolTip>
+					<Default>IComparable</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public class $name$<K, V> where K : $constraint1$, $constraint2$
+							 where V : $constraint3$, $constraint4$
+			{
+				throw new NotImplementedException()$end$;
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- deconstrucst tuple -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Deconstruct Tuple</Title>
+			<Shortcut>tupledector</Shortcut>
+			<Description>Code snippet for Tuple deconstruction</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Tuple name</ToolTip>
+					<Default>myTuple</Default>
+				</Literal>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>char</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>sbyte</Default>
+				</Literal>
+				<Literal>
+					<ID>T3</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>string</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[($T1$ arg1, $T2$ arg2, $T3$ arg3) $name$ = ('a', 5, "c"$end$);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- named tuple -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Named Tuple</Title>
+			<Shortcut>tuplenamed</Shortcut>
+			<Description>Code snippet for named Tuple</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Tuple name</ToolTip>
+					<Default>myTuple</Default>
+				</Literal>
+				<Literal>
+					<ID>name1</ID>
+					<ToolTip>variable name1</ToolTip>
+					<Default>FirstLetter</Default>
+				</Literal>
+				<Literal>
+					<ID>name2</ID>
+					<ToolTip>variable name2</ToolTip>
+					<Default>TheNumber</Default>
+				</Literal>
+				<Literal>
+					<ID>name3</ID>
+					<ToolTip>variable name3</ToolTip>
+					<Default>SecondLetter</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[var $name$ = ($name1$: "a", $name2$: 5, $name3$: "c"$end$);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- return tuple -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Return Tuple</Title>
+			<Shortcut>tuplereturn</Shortcut>
+			<Description>Code snippet for Return Tuple</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>Deconstruct</Default>
+				</Literal>
+				<Literal>
+					<ID>R1</ID>
+					<ToolTip>Return Type</ToolTip>
+					<Default>R1</Default>
+				</Literal>
+				<Literal>
+					<ID>R2</ID>
+					<ToolTip>Return Type</ToolTip>
+					<Default>R2</Default>
+				</Literal>
+				<Literal>
+					<ID>R3</ID>
+					<ToolTip>Return Type</ToolTip>
+					<Default>R3</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public static ($R1$ ret1, $R2$ ret2, $R3$ ret3) $name$($T$ arg$end$)
+			{
+				throw new NotImplementedException();
+			};
+			// var (first, _, last) = $name$("Hello World!"); var retValues = $name$("hello world!");
+			]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- List<object> -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>lob</Title>
+			<Shortcut>lob</Shortcut>
+			<Description>Code snippet for Generic.List</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>List name</ToolTip>
+					<Default>list</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[List<$T$> $name$ = new List<$T$>()$end$;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- HashSet<object> -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>sob</Title>
+			<Shortcut>sob</Shortcut>
+			<Description>Code snippet for Generic.HashSet</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>HashSet name</ToolTip>
+					<Default>set</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[HashSet<$T$> $name$ = new HashSet<$T$>()$end$;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- Dictionary<K, V> -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>mob</Title>
+			<Shortcut>mob</Shortcut>
+			<Description>Code snippet for Generic.Dictionary</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>V</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>V</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>List name</ToolTip>
+					<Default>map</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[Dictionary<$T$, $V$> $name$ = new Dictionary<$T$, $V$>{{$selected$}};]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- Stack<object> -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>skob</Title>
+			<Shortcut>skob</Shortcut>
+			<Description>Code snippet for Generic.Stack</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Stack name</ToolTip>
+					<Default>stack</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[Stack<$T$> $name$ = new Stack<$T$>()$end$;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	
+	<!-- Queue<object> -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>queue object</Title>
+			<Shortcut>qob</Shortcut>
+			<Description>Code snippet for Generic.Queue</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Queue name</ToolTip>
+					<Default>queue</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[Queue<$T$> $name$ = new Queue<$T$>()$end$;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- IEnumerable<object> -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>IEnumerable object</Title>
+            <Shortcut>enob</Shortcut>
+            <Description>Code snippet for IEnumerable object</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>iterable</Default>
+                </Literal>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Class, Structure name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[IEnumerable<$T$> $name$ = new $T$[]{}$end$;]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+	<!-- observable collection -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>observable collection</Title>
+            <Shortcut>obs</Shortcut>
+            <Description>Code snippet for observable collection</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>collection</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[ObservableCollection<$T$> $name$ = new ObservableCollection<$T$>()
+            {
+                $selected$
+            }
+            $name$.CollectionChanged += On$name$Changed;
+            static void On$name$Changed(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+            {
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+                {
+                    foreach (Person p in e.OldItems)
+                        Console.WriteLine(p.ToString());
+                }
+                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                {
+                    foreach (Person p in e.NewItems)
+                        Console.WriteLine(p.ToString());
+                }
+                throw new NotImplementedException();
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+	<!-- Iterable -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>iter</Title>
+			<Shortcut>iter</Shortcut>
+			<Description>Code snippet for Iterable</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Class name</ToolTip>
+					<Default>IteratorExample</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>collection</ID>
+					<ToolTip>Collection limit</ToolTip>
+					<Default>collection</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[class $name$ : IEnumerable<$T$>
+			{
+				/* business logic here */
+
+				public IEnumerator<$T$> GetEnumerator()
+				{
+					foreach ($T$ e in $collection$)
+						yield return e;
+				}
+
+				IEnumerator IEnumerable.GetEnumerator()
+				{ return GetEnumerator(); }
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- customize lazy data -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>customize lazy data</Title>
+			<Shortcut>lazy</Shortcut>
+			<Description>Code snippet for customize lazy data</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+					<Function>...</Function>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>object name</ToolTip>
+					<Default>all</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[private Lazy<$T$> $name$ = new Lazy<$T$>(() =>{
+				// Console.WriteLine("creating $T$ object");
+				return new $T$();
+			});]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+	
+	<!-- factory pattern -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>factory pattern</Title>
+			<Shortcut>factorypattern</Shortcut>
+			<Description>Code snippet for factory pattern</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+					<Function>...</Function>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Clas name</ToolTip>
+					<Default>MyClass</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[public static class $name$Factory<R, T> where T: class, R, new()
+			{
+				public static R GetInstance() => new T();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

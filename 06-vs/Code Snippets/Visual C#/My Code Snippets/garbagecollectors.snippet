@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+    <!-- garbage collector -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>garbage collector</Title>
+            <Shortcut>gcinfo</Shortcut>
+            <Description>Code snippet for garbage collector</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                    <Function>...</Function>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>arg</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>arg</Default>
+                    <Function>...</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void GetGCInfo($T$ $arg$=null$end$)
+            {
+                Console.WriteLine("Estimated bytes on heap: {0}", GC.GetTotalMemory(false));
+                Console.WriteLine("This OS has {0} object generations.\n", (GC.MaxGeneration + 1));
+                if ($arg$ != null)
+                    Console.WriteLine("Generation of $arg$ is: {0}", GC.GetGeneration($arg$));
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+    
+    <!-- manually force garbage collection -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>manually force garbage collection</Title>
+            <Shortcut>gcforce</Shortcut>
+            <Description>Code snippet for manually force garbage collection</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>gen</ID>
+                    <ToolTip>gen level</ToolTip>
+                    <Default>0</Default>
+                    <Function>...</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[GC.Collect($gen$);
+            GC.WaitForPendingFinalizers();]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- garbage collection model -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>garbage collection model</Title>
+            <Shortcut>gcmode</Shortcut>
+            <Description>Code snippet for garbage collection model</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations> 
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[public enum GCCollectionMode
+            {
+                Default,
+                Forced,
+                Optimized
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- formalized disposal pattern -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>formalized disposal pattern</Title>
+            <Shortcut>gcpattern</Shortcut>
+            <Description>Code snippet for formalized disposal pattern</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>MyResourceWrapper</Default>
+                    <Function>...</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[public class $T$: IDisposable
+            {
+                private bool disposed = false;
+                public void Dispose()
+                {
+                    CleanUp(true);
+                    GC.SuppressFinalize(this);
+                }
+                private void CleanUp(bool disposing)
+                {
+                    if (!this.disposed)
+                    {
+                        if (disposing)
+                        {
+                            // Dispose managed resources.
+                        }
+                        // Clean up unmanaged resources here.
+                    }
+                    disposed = true;
+                }
+                ~$T$() { CleanUp(false); }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- env -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>env</Title>
+			<Shortcut>env</Shortcut>
+			<Description>Code snippet for System.Environment</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[static void ShowEnvironmentDetails()
+			{
+				// Print out the drives on this machine, and other interesting details.
+				foreach (string drive in Environment.GetLogicalDrives())
+					Console.WriteLine("Drive: {0}", drive);
+				Console.WriteLine($$"Machine Name: {Environment.MachineName}");
+				Console.WriteLine($$"User Name: {Environment.UserName}");
+				Console.WriteLine($$"User Domain Name: {Environment.UserDomainName}");
+				Console.WriteLine("OS: {0}", Environment.OSVersion);
+				Console.WriteLine("Number of processors: {0}", Environment.ProcessorCount);
+				Console.WriteLine("System Directory: {0}", Environment.SystemDirectory);
+				Console.WriteLine("64-bit: {0}", Environment.Is64BitOperatingSystem);
+				Console.WriteLine($$"Version: {Environment.Version}");
+				Console.WriteLine(".NET Version: {0}", Environment.Version);
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- val reference mnemonic -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>valref</Title>
+			<Shortcut>valref</Shortcut>
+			<Description>Code snippet for value reference</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[
+			// Value types are only stored on the stack if they are local variables inside a method, or their parameters.
+			// This is what the stack is there for: storing local variables and parameters (and the return pointers of function calls).
+			// 1. If the value type was declared as a variable inside a method then it's stored on the stack.
+			// 2. If the value type was declared as a method parameter then it's stored on the stack.
+			// 3. If the value type was declared as a member of a class then it's stored on the heap, along with its parent.
+			// 4. If the value type was declared as a member of a struct then it's stored wherever that struct is stored.
+			]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- Thread.Sleep -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>thread sleep</Title>
+			<Shortcut>sleep</Shortcut>
+			<Description>Code snippet for Thread.Sleep</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>Q</ID>
+					<ToolTip>quantity</ToolTip>
+					<Default>1_000</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[Thread.Sleep($end$$Q$);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- Prime -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>prime</Title>
+			<Shortcut>prime</Shortcut>
+			<Description>Code snippet for prime</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System.Collections.Concurrent</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>filename</ID>
+					<ToolTip>File name</ToolTip>
+					<Default>filename</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[private static IList<int> GetPrimeList(IList<int> numbers) => numbers.Where(IsPrime).ToList();
+
+			/// <summary>
+			/// GetPrimeListWithParallel returns Prime numbers by using Parallel.ForEach
+			/// </summary>
+			/// <param name="numbers"></param>
+			/// <returns></returns>
+			private static IList<int> GetPrimeListWithParallel(IList<int> numbers)
+			{
+				var primeNumbers = new ConcurrentBag<int>();
+
+				Parallel.ForEach(numbers, number =>
+				{
+					if (IsPrime(number))
+					{
+						primeNumbers.Add(number);
+					}
+				});
+
+				return primeNumbers.ToList();
+			}
+
+			/// <summary>
+			/// IsPrime returns true if number is Prime, else false.(https://en.wikipedia.org/wiki/Prime_number)
+			/// </summary>
+			/// <param name="number"></param>
+			/// <returns></returns>
+			private static bool IsPrime(int number)
+			{
+				if (number < 2)
+				{
+					return false;
+				}
+
+				for (var divisor = 2; divisor <= Math.Sqrt(number); divisor++)
+				{
+					if (number % divisor == 0)
+					{
+						return false;
+					}
+				}
+				return true;
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- flags -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>flags</Title>
+			<Shortcut>flags</Shortcut>
+			<Description>Code snippet for enum flags works with byte, int</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>object</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>enum name</ToolTip>
+					<Default>ForumPrivileges</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>object</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[[Flags]
+			public enum $name$
+			{
+				/* business logic here */
+				CreatePosts = 1 << 0, // 1 or 00000001
+				EditOwnPosts = 1 << 1, // 2 or 00000010
+				VoteOnPosts = 1 << 2, // 4 or 00000100
+				EditOthersPosts = 1 << 3, // 8 or 00001000
+				DeletePosts = 1 << 4, // 16 or 00010000
+				CreateThreads = 1 << 5, // 32 or 00100000
+				Suspended = 1 << 6, // 64 or 01000000
+				
+				// Note we can also add in "shortcuts" here:
+				None = 0,
+				BasicUser = CreatePosts | EditOwnPosts | VoteOnPosts,
+				Administrator = BasicUser | EditOthersPosts | DeletePosts | CreateThreads
+			}
+
+			ForumPrivileges privileges = ForumPrivileges.BasicUser;
+			privileges |= ForumPrivileges.Suspended; // Turn on the 'suspended' field
+			// The & operator can be used to check if a particular flag is set
+			bool isSuspended = (privileges & ForumPrivileges.Suspended) == ForumPrivileges.Suspended;
+			// Using a combination of the & and the ~ operators, we can turn off a particular field
+			privileges &= ~ForumPrivileges.Suspended;
+			// you can also toggle a field using the ^ operator:
+			privileges ^= ForumPrivileges.DeletePosts;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- AssemblyInfo snk embeding -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>AssemblyInfo snk embeding</Title>
+			<Shortcut>asminfosnk</Shortcut>
+			<Description>Code snippet for AssemblyInfo snk embeding</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>path</ID>
+					<ToolTip>path name</ToolTip>
+					<Default>C:\MyTestKeyPair\MyTestKeyPair.snk</Default>
+					<Function>...</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[[assembly: AssemblyKeyFile(@"$path$")]]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- AssemblyInfo auto-increment after each compilation -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>AssemblyInfo auto-increment after each compilation</Title>
+			<Shortcut>asminfoversion</Shortcut>
+			<Description>Code snippet for AssemblyInfo auto-increment after each compilation</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+					<Function>...</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[[assembly: AssemblyVersion("1.0.*")]]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- AssemblyInfo culture -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>AssemblyInfo culture</Title>
+			<Shortcut>asminfoculture</Shortcut>
+			<Description>Code snippet for AssemblyInfo culture</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+					<Function>...</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[[assembly: AssemblyCulture("inherit")]]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- strong name command -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>strong name command</Title>
+			<Shortcut>cmdsnk</Shortcut>
+			<Description>Code snippet for strong name command</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>name</ID>
+					<ToolTip>key name</ToolTip>
+					<Default>MyTest</Default>
+					<Function>...</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[//sn -k $name$KeyPair.snk]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- ildasm usage -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>ildasm usage</Title>
+			<Shortcut>cmdildasm</Shortcut>
+			<Description>Code snippet for ildasm usage</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[//step1: open XXX.eve with ildasm.exe
+			//step2: use File => Dump to save the row CIL code to a new *.il file in the same folder containing your compiled assembly]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- Dumpbin.exe usage -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Dumpbin.exe usage</Title>
+			<Shortcut>cmddumpbin</Shortcut>
+			<Description>Code snippet for Dumpbin.exe usage</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[//dumpbin /headers XXX.dll or XXX.exe
+			//dumpbin /clrheader XXX.dll or XXX.exe]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- csc.exe compile program -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>csc.exe compile program</Title>
+			<Shortcut>cmdcsc</Shortcut>
+			<Description>Code snippet for csc.exe compile program</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[//csc /unsafe *.cs
+			//csc /keyfile *.cs]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- installing Strongly Named Assemblies to the GAC -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>installing Strongly Named Assemblies to the GAC</Title>
+			<Shortcut>cmdgac</Shortcut>
+			<Description>Code snippet for installing Strongly Named Assemblies to the GAC</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+					<Function>...</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[/*GAC
+            gacutil /i XXX.dll
+			gacutil /u XXX.dll
+			gacutil /l XXX
+			gacutil /ldl*/]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- publisher policy al.exe(assembly linker) -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>publisher policy al.exe(assembly linker)</Title>
+			<Shortcut>cmdal</Shortcut>
+			<Description>Code snippet for publisher policy al.exe(assembly linker)</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[//al /link:CarLibraryPolicy.xml /out:policy.1.0.CarLibrary.dll /keyf:C:\MyKey\myKey.snk /v:1.0.0.0
+			// pre-requisits
+			// The location of the *.config or *.xml file containing the redirecting instructions
+			// The name of the resulting publisher policy assembly
+			// The location of the *.snk file used to sign the publisher policy assembly
+			// The version numbers to assign the publisher policy assembly being constructed]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- AppSettingsReader -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>AppSettingsReader</Title>
+			<Shortcut>appsr</Shortcut>
+			<Description>Code snippet for AppSettingsReader</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[AppSettingsReader ar = new AppSettingsReader();
+			int numbOfTimes = (int)ar.GetValue("RepeatCount", typeof(int));
+			string textColor = (string)ar.GetValue("TextColor", typeof(string));
+			Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), textColor);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+    <!-- OpenFileDialog -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>OpenFileDialog</Title>
+            <Shortcut>openfile</Shortcut>
+            <Description>Code snippet for OpenFileDialog</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[OpenFileDialog dlg = new OpenFileDialog
+            {
+                InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                Filter = "asseblies (*.dll)|*.dll|All files (*.*)|*.*",
+                FilterIndex = 1
+            };
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                //business logic here
+            }]]>
+			</Code>
+		</Snippet>
+    </CodeSnippet>
+
+    <!-- garbage collector -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>FolderBrowerDialog</Title>
+            <Shortcut>openfolder</Shortcut>
+            <Description>Code snippet for FolderBrowerDialog</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[FolderBrowserDialog dlg = new FolderBrowserDialog
+            {
+                // Set the properties of the FolderBrowserDialog
+                dlg.Description = "Select multiple folders",
+                dlg.ShowNewFolderButton = false,
+                dlg.SelectedPath = @"C:\",
+                // Set the root folder to the Desktop
+                dlg.RootFolder = Environment.SpecialFolder.Desktop,
+                folderBrowserDialog.Multiselect = true,
+            };
+            
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string[] selectedFolders = dlg.SelectedPaths;
+                foreach (string folder in selectedFolders)
+                {
+                    Console.WriteLine(folder);
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- SaveFileDialog -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>SaveFileDialog</Title>
+            <Shortcut>savefile</Shortcut>
+            <Description>Code snippet for SaveFileDialog</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[SaveFileDialog dlg = new SaveFileDialog
+            {
+                dlg.Title = "Save File";
+                dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                dlg.DefaultExt = "txt";
+                dlg.InitialDirectory = @"C:\";
+            };
+            
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = dlg.FileName;
+                try
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        // business logic here
+                        writer.WriteLine("Hello, world!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error saving file: " + ex.Message);
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- compile IL code using ildasm -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>compile IL code using ildasm</Title>
+            <Shortcut>cmdcompileil</Shortcut>
+            <Description>Code snippet for compile IL code using ildasm</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//ilasm /exe HelloProgram.il /output=NewAssembly.exe]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- peverify -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>peverify</Title>
+            <Shortcut>cmdpeverify</Shortcut>
+            <Description>Code snippet for peverify</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Assembly name</ToolTip>
+                    <Default>NewAssembly</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//peverify $name$.exe]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- CIL grammer -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>CIL grammer</Title>
+            <Shortcut>cilgrammer</Shortcut>
+            <Description>Code snippet for CIL grammer</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//CIL dao => directives, attributes, opcodes
+            //D => .XXX
+            //A => public, extends ...
+            //O => ldXXX, opXXX
+            //Round-Trip Engineering
+            //Once you have the CIL code at your disposal, 
+            //you are free to edit and recompile the codebase using the CIL compiler, ilasm.exe.]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- case when -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>case when</Title>
+            <Shortcut>casewhen</Shortcut>
+            <Description>Code snippet for case when to bind variable</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>object</Default>
+                </Literal>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>s</Default>
+                </Literal>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+                <Literal>
+                    <ID>prop</ID>
+                    <ToolTip>Property name</ToolTip>
+                    <Default>Number</Default>
+                </Literal>
+                <Literal>
+                    <ID>condi</ID>
+                    <ToolTip>condition name</ToolTip>
+                    <Default>5</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[case $T$ $name$ when $name$.$prop$ > $condi$$end$:
+                break;
+            ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- catch when -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>catch when</Title>
+            <Shortcut>catchwhen</Shortcut>
+            <Description>Code snippet for catch when</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>object</Default>
+                </Literal>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>s</Default>
+                </Literal>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>Exception</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp"><![CDATA[catch ($T$ e) when (e.ErrorTimeStamp.DayOfWeek != DayOfWeek.Friday)
+            {
+                /* ... */
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Find most common words -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Find most common words</Title>
+            <Shortcut>getmostcommonwords</Shortcut>
+            <Description>Code snippet for Find most common words</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[private string[] FindTenMostCommon(string[] words)
+            {
+                var frequencyOrder = from word in words
+                                    where word.Length > 6
+                                    group word by word into g
+                                    orderby g.Count() descending
+                                    select g.Key;
+                string[] commonWords = (frequencyOrder.Take(10)).ToArray();
+                return commonWords;
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Get longest word -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Get longest word</Title>
+            <Shortcut>getlongestword</Shortcut>
+            <Description>Code snippet for Get longest word</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[private string FindLongestWord(string[] words)
+            {
+                return (from w in words orderby w.Length descending select w).FirstOrDefault();
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

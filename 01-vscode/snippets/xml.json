@@ -1,0 +1,271 @@
+{
+	"csharp": {
+		"prefix": "cstemplate",
+		"body": [
+			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>",
+			"<CodeSnippets  xmlns=\"http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet\">\n",
+			"\t<!-- ${1:XXX} -->",
+			"\t<CodeSnippet Format=\"1.0.0\">",
+			"\t\t<Header>",
+			"\t\t\t<Title>$1</Title>",
+			"\t\t\t<Shortcut>${2:plom}</Shortcut>",
+			"\t\t\t<Description>Code snippet for $1</Description>",
+			"\t\t\t<Author>ZL</Author>",
+			"\t\t\t<SnippetTypes>",
+			"\t\t\t\t<SnippetType>Expansion</SnippetType>",
+			"\t\t\t\t<!-- <SnippetType>SurroundsWith</SnippetType> -->",
+			"\t\t\t</SnippetTypes>",
+			"\t\t</Header>",
+			"\t\t<Snippet>",
+            "\t\t\t<Imports>",
+            "\t\t\t\t<Import>",
+            "\t\t\t\t\t<Namespace>System</Namespace>",
+            "\t\t\t\t</Import>",
+            "\t\t\t</Imports>",
+			"\t\t\t<Declarations>",
+			"\t\t\t\t<Literal Editable=\"true\">",
+			"\t\t\t\t\t<ID>R</ID>",
+			"\t\t\t\t\t<ToolTip>Type name</ToolTip>",
+			"\t\t\t\t\t<Default>R</Default>",
+			"\t\t\t\t</Literal>",
+			"\t\t\t\t<Literal Editable=\"true\">",
+			"\t\t\t\t\t<ID>name</ID>",
+			"\t\t\t\t\t<ToolTip>Method name</ToolTip>",
+			"\t\t\t\t\t<Default>MethodName</Default>",
+			"\t\t\t\t</Literal>",
+			"\t\t\t\t<Literal Editable=\"true\">",
+			"\t\t\t\t\t<ID>T</ID>",
+			"\t\t\t\t\t<ToolTip>Type name</ToolTip>",
+			"\t\t\t\t\t<Default>T</Default>",
+			"\t\t\t\t</Literal>",
+			"\t\t\t</Declarations>",
+			"\t\t\t<Code Language=\"csharp\">",
+			"\t\t\t<![CDATA[",
+			"\t\t\t]]>",
+			"\t\t\t</Code>",
+			"\t\t</Snippet>",
+			"\t</CodeSnippet>",
+			"</CodeSnippets>",
+		],
+		"description": "Visual Studio, XML codesnippet, User Code Snippets template",
+	},
+
+	"object": {
+		"prefix": "csobject",
+		"body": [
+			"<Object Editable=\"true\">",
+			"\t<ID>...</ID>",
+			"\t<Type>...</Type>",
+			"\t<ToolTip>...</ToolTip>",
+			"\t<Default>...</Default>",
+			"\t<Function>...</Function>",
+			"</Object>",
+		],
+		"description": "Visual Studio, XML codesnippet, object"
+	},
+
+	"throw exception": {
+		"prefix": "csthrow",
+		"body": [
+			"throw new NotImplementedException();",
+		],
+		"description": "Visual Studio, XML codesnippet, throw",
+	},
+
+	"import": {
+		"prefix": "csimport",
+		"body": [
+			"<Imports>",
+			"\t<Import>",
+			"\t\t<Namespace>${1:System}</Namespace>",
+			"\t</Import>",
+			"</Imports>",
+		],
+		"description": "Visual Studio, XML codesnippet, import",
+	},
+
+	"declaration": {
+		"prefix": "csdeclaration",
+		"body": [
+            "<Declarations>",
+            "\t<Literal Editable=\"true\">",
+            "\t\t<ID>${1:T}</ID>",
+            "\t\t<ToolTip>${2:Type} name</ToolTip>",
+            "\t\t<Default>T</Default>",
+            "\t\t<Function>...</Function>",
+            "\t</Literal>",
+            "</Declarations>",
+		],
+		"description": "Visual Studio, XML codesnippet, declaration",
+	},
+
+	"literal": {
+		"prefix": "csliteral",
+		"body": [
+			"<Literal Editable=\"true\">",
+			"\t<ID>${1:T}</ID>",
+			"\t<ToolTip>${2:Type} name</ToolTip>",
+			"\t<Default>$1</Default>",
+			"</Literal>",
+		],
+		"description": "Visual Studio, XML codesnippet, Literal",
+	},
+
+	"codesnippet": {
+		"prefix": "cscodesnippet",
+		"body": [
+			"<!-- ${1:garbage collector} -->",
+			"<CodeSnippet Format=\"1.0.0\">",
+			"\t<Header>",
+			"\t\t<Title>$1</Title>",
+			"\t\t<Shortcut>${2:what}</Shortcut>",
+			"\t\t<Description>Code snippet for $1</Description>",
+			"\t\t<Author>ZL</Author>",
+			"\t\t<SnippetTypes>",
+			"\t\t\t<SnippetType>Expansion</SnippetType>",
+			"\t\t</SnippetTypes>",
+			"\t</Header>",
+			"\t<Snippet>",
+			"\t\t<Imports>",
+			"\t\t\t<Import>",
+			"\t\t\t\t<Namespace>${3:System}</Namespace>",
+			"\t\t\t</Import>",
+			"\t\t</Imports>",
+			"\t\t<Declarations>",
+			"\t\t\t<Literal Editable=\"true\">",
+			"\t\t\t\t<ID>${4:T}</ID>",
+			"\t\t\t\t<ToolTip>Type name</ToolTip>",
+			"\t\t\t\t<Default>$4</Default>",
+			"\t\t\t</Literal>",
+			"\t\t</Declarations>",
+			"\t\t<Code Language=\"csharp\">",
+			"\t\t<![CDATA[",
+			"\t\t]]>",
+			"\t\t</Code>",
+			"\t</Snippet>",
+			"</CodeSnippet>",
+		],
+		"description": "Visual Studio, XML codesnippet, codesnippet",
+	},
+
+	"appconfigtemplate": {
+		"prefix": "appconfigtemplate",
+		"body": [
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+			"<configuration>",
+			"\t<startup> ",
+			"\t\t<supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.2\" />",
+			"\t</startup>",
+			"\t<runtime>",
+			"\t\t<assemblyBinding xmlns=\"urn:schemas-microsoft-com:asm.v1\">",
+			"\t\t\t<dependentAssembly>",
+			"\t\t\t\t<assemblyIdentity name=\"System.Runtime.CompilerServices.Unsafe\" publicKeyToken=\"b03f5f7f11d50a3a\" culture=\"neutral\" />",
+			"\t\t\t\t<bindingRedirect oldVersion=\"0.0.0.0-4.0.6.0\" newVersion=\"4.0.6.0\" />",
+			"\t\t\t</dependentAssembly>",
+			"\t\t</assemblyBinding>",
+			"\t</runtime>",
+			"</configuration>",
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template"
+	},
+
+	"runtime": {
+		"prefix": "appconfigruntime",
+		"body": [
+			"<runtime>",
+			"\t<assemblyBinding xmlns=\"urn:schemas-microsoft-com:asm.v1\">",
+			"\t\t<probing privatePath=\"MyLibraries\"/>",
+			"\t</assemblyBinding>",
+			"</runtime>",
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template, runtime"
+	},
+
+	"probing": {
+		"prefix": "appconfigprobing",
+		"body": [
+			"<probing privatePath=\"MyLibraries;MyLibraries\\Tests\"/>",
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template, probling"
+	},
+
+	"dynamically redirect": {
+		"prefix": "appconfigredirect",
+		"body": [
+			"<dependentAssembly>",
+			"\t<assemblyIdentity name=\"${1:name}\" publicKeyToken=\"${2:pk}\" culture=\"neutral\" />",
+			"\t<bindingRedirect oldVersion=\"0.0.0.0-4.0.6.0\" newVersion=\"4.0.6.0\" />",
+			"\t<codeBase version=\"2.0.0.0\" href=\"file:///C:/MyAsms/CarLibrary.dll\" />",
+			"</dependentAssembly>",
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template, Dynamically Redirecting to Specific Versions of a Shared Assembly"
+	},
+
+	"Disabling Publisher Policy": {
+		"prefix": "appconfigdisablepp",
+		"body": [
+			"<publisherPolicy apply=\"no\" />"
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template, Disabling Publisher Policy"
+	},
+
+	"System.Configuration": {
+		"prefix": "appconfigsystemconfig",
+		"body": [
+			"<!-- Custom App settings -->",
+			"<appSettings>",
+			"\t<add key=\"TextColor\" value=\"Green\" />",
+			"\t<add key=\"RepeatCount\" value=\"8\" />",
+			"</appSettings>",
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template, System.Configuration"
+	},
+
+	"system.serviceModel": {
+		"prefix": "appconfigservicemodel",
+		"body": [
+			"<system.serviceModel>",
+			"\t<services>",
+			"\t\t<service name = \"${1:MagicEightBallServiceLib.MagicEightBallService}\">",
+			"\t\t<!-- Address obtained from <baseAddresses> -->",
+			"\t\t<endpoint",
+			"\t\t\taddress = \"${2:http://localhost:8080/MagicEightBallService}\"",
+			"\t\t\tbinding = \"${3:basicHttpBinding}\"",
+			"\t\t\tcontract = \"${4:MagicEightBallServiceLib.IEightBall}\"/>",
+			"\t\t\t<!-- List all of the base addresses in a dedicated section -->",
+			"\t\t<host>",
+			"\t\t\t<baseAddresses>",
+			"\t\t\t\t<add baseAddress = \"${5:http://localhost:8080/MagicEightBallService}\"/>",
+			"\t\t\t</baseAddresses>",
+			"\t\t</host>",
+			"\t\t</service>",
+			"\t</services>",
+			"</system.serviceModel>",
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template, System.serviceModel"
+	},
+
+	"system.serviceModel.template": {
+		"prefix": "appconfigservicemodeltemplate",
+		"body": [
+			"<system.serviceModel>",
+			"\t<behaviors>",
+			"\t</behaviors>",
+			"\t<client>",
+			"\t</client>",
+			"\t<commonBehaviors>",
+			"\t</commonBehaviors>",
+			"\t<diagnostics>",
+			"\t</diagnostics>",
+			"\t<comContracts>",
+			"\t</comContracts>",
+			"\t<services>",
+			"\t</services>",
+			"\t<bindings>",
+			"\t</bindings>",
+			"</system.serviceModel>",
+		],
+		"description": "Visual Studio, Appconfig codesnippet, App.exe.config template, System.serviceModel.template"
+	},
+
+}

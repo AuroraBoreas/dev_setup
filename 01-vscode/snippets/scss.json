@@ -1,0 +1,17 @@
+{
+	"scss-bst-customize-colors": {
+		"prefix": "scss-bst-colors",
+		"body": [
+			"$$primary: #c29938;\n",
+			"@import '${1:../node_modules/bootstrap/scss/_functions}';",
+			"@import '${2:../node_modules/bootstrap/scss/_variables}';\n",
+			"$$custome-theme-colors: (",
+			"\t'altlight': #f2ebfa,",
+			"\t'altdark': #522192,",
+			");\n",
+			"$$theme-colors: map-merge($$custome-theme-colors, $$theme-colors);\n",
+			"@import '${3:../node_modules/bootstrap/scss/bootstrap}';",
+		],
+		"description": "scss, Bootstrap5, customize bs5-colors",
+	}
+}

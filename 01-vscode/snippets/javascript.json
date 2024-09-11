@@ -1,0 +1,461 @@
+{
+	"js-cout": {
+		"prefix": "cout",
+		"body": [
+			"console.log($1)$0",
+		],
+		"description": "JavaScript, console write"
+	},
+
+	"js-array-dector": {
+		"prefix": "dector-array",
+		"body": [
+			"let [$1, ,$2, ...rest] = [$0];",
+		],
+		"description": "JavaScript, de-constructor, similar pattern against Map, Object (keys should be same though)"
+	},
+
+	"js-object-dector": {
+		"prefix": "dector-object",
+		"body": [
+			"let {${1:prop} : ${2:var} = ${3:default}, ...rest} = ${4:object};",
+		],
+		"description": "JavaScript, de-constructor"
+	},
+
+	"js-pobm": {
+		"prefix": "pobm",
+		"body": [
+			"function ${1:methodName}($2) {",
+			"\t$0",
+			"}",
+		],
+		"description": "JavaScript, console write"
+	},
+
+	"js-curry-infinite": {
+		"prefix": "js-curry-infinite",
+		"body": [
+			"function sum(n) {",
+			"\tlet s = n;",
+			"\tfunction f(n) {",
+			"\t\ts += n$0;",
+			"\t\treturn f; // the function `returns` itself -> this is not recursion !important; recursion: function `calls` itself",
+			"\t}",
+			"\tf.toString = function() {",
+			"\t\treturn s;",
+			"\t}",
+			"\treturn f;",
+			"}",
+		],
+		"description": "JavaScript, curry function, infinite"
+	},
+
+	"js-function-new": {
+		"prefix": "js-function-new",
+		"body": [
+			"let ${1:methodName} = new Function (${2:'arg1', 'arg2', ...'argN'}, 'return ${3:functionBody}');"
+		],
+		"description": "JavaScript, new Function"
+	},
+
+	"js-function-borrowing": {
+		"prefix": "js-function-borrowing",
+		"body": [
+			"[].join.call(arguments)",
+		],
+		"description": "JavaScript, function, `method borrowing`"
+	},
+
+	"js-Object-create": {
+		"prefix": "js-Object-create",
+		"body": [
+			"let ${1:obj} = Object.create(${2:proto}, {",
+			"\t${3:prop}: {",
+			"\t\tvalue: $0,",
+			"\t\tenumerable: false,",
+			"\t\twritable: true,",
+			"\t\tconfigurable: true,",
+			"\t},",
+			"});",
+		],
+		"description": "JavaScript, Object, `Object-create`, Accessor descriptors: writable, enumerable, configurable"
+	},
+
+	"js-property-getter-setter": {
+		"prefix": "js-prop",
+		"body": [
+			"let ${1:obj} = {",
+			"\tget ${2:propName}() {",
+			"\t},",
+			"\tset $2(value) {",
+			"\t}",
+			"};",
+		],
+		"description": "JavaScript, Object, getter & setter, Accessor descriptors: Writable(get, set);"
+	},
+
+	"js-requestData": {
+		"prefix": "js-requestData",
+		"body": [
+			"let delay = ${1:5000};",
+			"let timerId = setTimeout(function request() {",
+			"\t// ...send request...$0",
+			"\tif (${2:/* request failed due to server overload */}) {",
+			"\t\tdelay *= 2; // increase the interval to the next run",
+			"\t}",
+			"\ttimerId = setTimeout(request, delay);",
+			"}, delay);\n",
+		],
+		"description": "JavaScript,  write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds"
+	},
+
+	"js-error-custom": {
+		"prefix": "js-error-custom",
+		"body": [
+			"class ${1:MyError} extends ${2:Error} {",
+			"\tconstructor(message, ${3:cause}) {",
+			"\t\tsuper(message);",
+			"\t\tthis.cause = $3;",
+			"\t}",
+			"}",
+		],
+		"description": "JavaScript, customize Error Type"
+	},
+
+	"js-serialize": {
+		"prefix": "js-serialize",
+		"body": [
+			"const fs = require('fs');",
+			"const filePath = '${1:data}.json';",
+			"fs.writeFileSync(filePath, jsonData);",
+			"try {",
+			"\tconst jsonData = fs.readFileSync(filePath, 'utf8');",
+			"\tconst parsedData = JSON.parse(jsonData);",
+			"\tconsole.log(parsedData);",
+			"} catch (error) {",
+			"\tconsole.error('Error reading file:', error);",
+			"}\n",
+		],
+		"description": "JavaScript, serialize & deserialize"
+	},
+
+	"js-export": {
+		"prefix": "js-export",
+		"body": [
+			"module.exports = { ${1:func},$2 };",
+		],
+		"description": "export"
+	},
+
+	"js-import": {
+		"prefix": "js-import",
+		"body": [
+			"const { ${1:func},$2 } = require('./${3:main}');\n",
+		],
+		"description": "import"
+	},
+
+	"jest-test-method": {
+		"prefix": "jest-test-method",
+		"body": [
+			"test('${1:func} $2', () => {",
+			"\texpect($1($3)).toBe($4);",
+			"});\n",
+		],
+		"description": "jest, test method"
+	},
+	
+	"js-promise": {
+		"prefix": "js-promise",
+		"body": [
+			"new Promise((resolve, reject) => {",
+			"\tsetTimeout(() => ${2:resolve}($3), ${4:1000})",
+			"})",
+			"\t.finally(() => ${5:stop loading indicator})",
+			"\t.then(result => ${6:show result}, error => ${7:show error})",
+			"\t.catch(${8:func})",
+		],
+		"description": "Promise, promise.[then|catch|finally], Promise.[all|allSettled|any|race]"
+	},
+	
+	"js-thenable": {
+		"prefix": "js-thenable",
+		"body": [
+			"class Thenable {",
+			"\tconstructor(${1:num}) {",
+			"\t\tthis.$1 = $1;",
+			"\t}",
+			"\tthen(resolve, reject) {",
+			"\t\tsetTimeout(() => resolve(this.$1 * 2), 1000);$0",
+			"\t}",
+			"}",
+		],
+		"description": "Thenable"
+	},
+
+	"js-async": {
+		"prefix": "js-async",
+		"body": [
+			"async function ${1:functionName}() {",
+			"\t// Asynchronous code",
+			"}",
+		],
+		"description": "Async/Await"
+	},
+
+	"js-clone": {
+		"prefix": "js-clone",
+		"body": [
+			"let ${1:clone} = Object.create(Object.getPrototypeOf(${2:obj}), Object.getOwnPropertyDescriptors($2));",
+		],
+		"description": "Object, cloning"
+	},
+
+	"js-prototpye": {
+		"prefix": "js-prototpye",
+		"body": [
+			"Function.prototype.${1:defer} = function($2){$3};",
+		],
+		"description": "Function(only?), prototype extends"
+	},
+
+	"js-class": {
+		"prefix": "js-class",
+		"body": [
+			"class ${1:MyClass} {",
+			"\tconstructor($2){$3}",
+			"\t['method' + 'Name']() {}$0",
+			"}",
+		],
+		"description": "class, computed method name"
+	},
+
+	"algo-shuffle": {
+		"prefix": "algo-shuffle",
+		"body": [
+			"function shuffleArray(arr) {",
+			"\tfor (let i = arr.length - 1; i > 0; i--) {",
+			"\t\tconst j = Math.floor(Math.random() * (i + 1));",
+			"\t\t[arr[i], arr[j]] = [arr[j], arr[i]];",
+			"\t}",
+			"\treturn arr;",
+			"}",
+		],
+		"description": "algorithm, Fisher-Yates shuffle"
+	},
+
+	"js-iterable": {
+		"prefix": "js-iterable",
+		"body": [
+			"function intRangeClosed(startInclusive, endInclusive) {",
+			"\tlet o = {",
+			"\t\tfrom: startInclusive,",
+			"\t\tto: endInclusive,",
+			"\t\t[Symbol.iterator]() {",
+			"\t\t\tthis.current = this.from;",
+			"\t\t\treturn this;",
+			"\t\t},\n",
+			"\t\tnext() {",
+			"\t\t\tif (this.current <= this.to) {",
+			"\t\t\t\treturn { done: false, value: this.current++ };",
+			"\t\t\t} else {",
+			"\t\t\t\treturn { done: true };",
+			"\t\t\t}",
+			"\t\t}",
+			"\t};\n",
+			"\treturn Array.from(o);",
+			"}\n",
+		],
+		"description": "Iterable"
+	},
+
+	"js-generator": {
+		"prefix": "js-generator",
+		"body": [
+			"function intRangeClosed(startInclusive, endInclusive) {",
+			"\tlet o = {",
+			"\t\tfrom: startInclusive,",
+			"\t\tto: endInclusive,",
+			"\t\t*[Symbol.iterator]() {",
+			"\t\tfor(let value = this.from; value <= this.to; value++) {",
+			"\t\t\t\tyield value;",
+			"\t\t\t}",
+			"\t\t}",
+			"\t}",
+			"\treturn Array.from(o);",
+			"}",
+		],
+		"description": "Generator, a shorthand for [Symbol.iterator]: function*()"
+	},
+
+	"js-websocket": {
+		"prefix": "js-websocket",
+		"body": [
+			"var socket = new WebSocket('ws://localhost:8000/ws/graph/');",
+			"socket.onmessage = function(e) {",
+			"\tvar djangoData = JSON.parse(e.data);",
+			"\tconsole.log(djangoData);",
+			"\tvar newGraphData = graphData.data.datasets[0].data;",
+			"\tnewGraphData.shift();",
+			"\tnewGraphData.push(djangoData.value);",
+			"\tgraphData.data.datasets[0].data = newGraphData;",
+			"\tmyChart.update();",
+			"}",
+		],
+		"description": "websocket + chart.js"
+	},
+
+	"js-enable-debugger": {
+		"prefix": "js-enable-debugger",
+		"body": [
+			"F = Function.prototype.constructor;",
+			"Function.prototype.constructor = function(a) {",
+			"\tif (a == 'debugger') {",
+			"\t\treturn function(){};",
+			"\t}",
+			"\treturn F(a);",
+			"}",
+		],
+		"description": "JS, enable debugger"
+	},
+
+	"js-progressbar": {
+		"prefix": "js-progressbar",
+		"body": [
+			"function animateProgressBar(b, t) {",
+			"\tlet progressBar = document.getElementById(b);",
+			"\tlet currentValue = parseInt(progressBar.style.width) || 0;",
+			"\tlet interval = setInterval(",
+			"\t\tfunction () {",
+			"\t\t\tcurrentValue++;",
+			"\t\t\tprogressBar.style.width = currentValue + '%';",
+			"\t\t\tprogressBar.setAttribute('aria-valuenow', currentValue);",
+			"\t\t\tif (currentValue >= 100) {",
+			"\t\t\t\tcurrentValue = 0;",
+			"\t\t\t\tprogressBar.style.width = '0%';",
+			"\t\t\t\tprogressBar.setAttribute('aria-valuenow', '0');",
+			"\t\t\t}",
+			"\t\t}, t",
+			"\t);",
+			"}",
+		],
+		"description": "Bootstrap, create a dynamic progressbar"
+	},
+
+	"js-jQuery-concepts": {
+		"prefix": "jq-Concepts",
+		"body": [
+			"/* jQueryConcepts */",
+			"// Selectors: ",
+			"// Events: ",
+			"// DOM manipulation: ",
+			"// Methods: ",
+			"// Effects & Animation: ",
+			"// Ajax: ",
+		],
+		"description": "jQuery concepts"
+	},
+
+	"js-jQuery-selector-document-ready": {
+		"prefix": "jq-DocumentReady",
+		"body": [
+			"$(document).ready(()=>{",
+			"\t$0",
+			"});",
+		],
+		"description": "jQuery $(document).ready();"
+	},
+
+	"js-jQuery-ajax": {
+		"prefix": "jq-ajax",
+		"body": [
+			"$(document).ready(()=>{",
+			"\t$.ajax({",
+			"\t\ttype: '${1:get}',",
+			"\t\turl: '${2:route}/',",
+			"\t\tdataType: 'json',",
+			"\t\tdata: ${3:q},",
+			"\t\tsuccess: function(data) {",
+			"\t\t\t$0",
+			"\t\t},",
+			"\t\terror: function(xhr, status, error) {}",
+			"\t});",
+			"});",
+		],
+		"description": "jQuery, ajax;"
+	},
+
+	"js-jQuery-render-dataTable-downloadBtn": {
+		"prefix": "jq-RenderDataTableDownloadBtn",
+		"body": [
+			"function renderDownloadButton(btnId, url){",
+			"\tvar btn = $(btnId);",
+			"\tbtn.attr('href', url);",
+			"\tbtn.removeClass('d-none');",
+			"\tbtn.text('Download');",
+			"};",
+			"function displayTable(tableId, toggle) {",
+			"\tvar table = $(tableId);",
+			"\tif (toggle) {",
+			"\t\ttable.removeClass('d-none');",
+			"\t} else {",
+			"\t\ttable.addClass('d-none');",
+			"\t}",
+			"};",
+			"function reset(btnId, tableId){",
+			"\tvar btn = $(btnId);",
+			"\tbtn.addClass('d-none');",
+			"\tbtn.text('');",
+			"\tbtn.removeAttr('href');",
+			"\tdisplayTable(tableId, false);",
+			"\tnew DataTable(tableId, {",
+			"\t\tdestroy: true,",
+			"\t\tsearching: false,",
+			"\t\tpaging: false,",
+			"\t\tdata: {},",
+			"\t});",
+			"};",
+			"function renderTable(tableId, data) {",
+			"\tdisplayTable(tableId, true);",
+			"\tnew DataTable(tableId, {",
+			"\t\tdestroy: true,",
+			"\t\tsearching: false,",
+			"\t\tdata: data,",
+			"\t\tcolumns: [",
+			"\t\t\t{data: '${1:pk}'},",
+			"\t\t\t{data: '${2:fields}.${3:title}'},",
+			"\t\t\t{data: '$2.${4:createdAt}'},",
+			"\t\t\t{data: '$2.${5:price}'},",
+			"\t\t],",
+			"\t});",
+			"};",
+			"$(document).ready(function(){",
+			"\t$('#${6:formId}').submit(function(e) {",
+			"\t\te.preventDefault();",
+			"\t\tvar formData = $(this).serialize();",
+			"\t\tvar downloadUrl = 'dl/?dl&' + formData;",
+			"\t\t$.ajax({",
+			"\t\t\ttype: 'get',",
+			"\t\t\turl: '${7:route}/',",
+			"\t\t\tdataType: 'json',",
+			"\t\t\tdata: formData,",
+			"\t\t\tsuccess: function(data) {",
+			"\t\t\t\tvar jsonData = JSON.parse(data);",
+			"\t\t\t\tconst btnId = '#${8:btnId}', tableId = '#${9:tableId}';",
+			"\t\t\t\tif (jsonData.length !== 0) {",
+			"\t\t\t\t\treset(btnId, tableId);",
+			"\t\t\t\t\trenderDownloadButton(btnId, downloadUrl);",
+			"\t\t\t\t\trenderTable(tableId, jsonData);",
+			"\t\t\t\t} else {",
+			"\t\t\t\t\treset(btnId, tableId);",
+			"\t\t\t\t}",
+			"\t\t\t},",
+			"\t\t\terror: function(xhr, status, error) {}",
+			"\t\t});",
+			"\t});",
+			"});",
+		],
+		"description": "jQuery, render dataTable + download Button;"
+	},
+}

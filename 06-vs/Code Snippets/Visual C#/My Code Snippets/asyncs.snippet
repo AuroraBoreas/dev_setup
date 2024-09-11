@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- asyncio -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>asyncio</Title>
+			<Shortcut>asyncio</Shortcut>
+			<Description>Code snippet for asyncio</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>object</Default>
+				</Literal>
+				<Literal>
+					<ID>name1</ID>
+					<ToolTip>Method name1</ToolTip>
+					<Default>AsyncMethodName1</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>object</Default>
+				</Literal>
+				<Literal>
+					<ID>name2</ID>
+					<ToolTip>Method name2</ToolTip>
+					<Default>AsyncMethodName2</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public static async Task<$R$> $name1$($T$ arg$end$)
+			{
+				// business logic here
+			}
+
+			public static async Task<$R$[]> $name2$(IEnumerable<$T$> iterable)
+			{
+				var getUserTasks = iterable.Select(e => $name1$(e)).ToArray();
+				return await Task.WhenAll(getUserTasks);
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- async method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>async method</Title>
+			<Shortcut>asyncmeth</Shortcut>
+			<Description>Code snippet for general async method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>accessModifier</ID>
+					<ToolTip>Access level</ToolTip>
+					<Default>public</Default>
+				</Literal>
+				<Literal>
+					<ID>memberModifier</ID>
+					<ToolTip>memberModifier name</ToolTip>
+					<Default>static</Default>
+				</Literal>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>object</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>object</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>object</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[$accessModifier$ $memberModifier$ async Task<$R$> $name$Async($T1$ arg1, $T2$ arg2$end$)
+			{
+				throw new NotImplementedException();
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

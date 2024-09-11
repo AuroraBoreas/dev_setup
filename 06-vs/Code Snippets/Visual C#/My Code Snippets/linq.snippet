@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- Linq query expressions -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>linq</Title>
+			<Shortcut>linq</Shortcut>
+			<Description>Code snippet for Linq</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System.Linq</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>collection1</ID>
+					<ToolTip>collection name</ToolTip>
+					<Default>collection1</Default>
+				</Literal>
+				<Literal>
+					<ID>object1</ID>
+					<ToolTip>object name</ToolTip>
+					<Default>o1</Default>
+				</Literal>
+				<Literal>
+					<ID>collection2</ID>
+					<ToolTip>collection name</ToolTip>
+					<Default>collection2</Default>
+				</Literal>
+				<Literal>
+					<ID>object2</ID>
+					<ToolTip>object name</ToolTip>
+					<Default>o2</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[IEnumerable<$T$> result =
+				from $object1$ in $collection1$
+				from $object2$ in $object1$.$collection2$
+				where $object2$.Age >= 13
+				where $object2$.Age < 20
+				orderby $object1$.Height descending
+				select $object1$.FirstName + " " + $object1$.LastName;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

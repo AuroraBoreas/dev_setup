@@ -1,0 +1,187 @@
+{
+	"R-pvm": {
+		"prefix": "pvm",
+		"body": [
+			"${1:f} <- function($2) {",
+			"\t$0",
+			"}",
+		],
+		"description": "R, function",
+	},
+
+	"R-foreach" : {
+		"prefix": "foreach",
+		"body": [
+			"for(${1:var} in ${2:collection}) {",
+			"\t$0",
+			"}",
+		],
+		"description": "R, for_each",
+	},
+
+	"R-while": {
+		"prefix": "while",
+		"body": [
+			"while (${1:condi}) {",
+			"\t$0",
+			"}",
+		],
+		"description": "R, while loop",
+	},
+
+	"R-repeat": {
+		"prefix": "repeat",
+		"body": [
+			"repeat {",
+			"\tif (${1:condi}) {",
+			"\t\t$0",
+			"\t\tbreak",
+			"\t} else {};",
+			"}",
+		],
+		"description": "R, repeat",
+	},
+
+	"R-df": {
+		"prefix": "df",
+		"body": [
+			"df <- data.frame(",
+			"\t${1:x}=1:3,",
+			"\t${2:y}=c('a','b','c'),",
+			"\t${3:z}=12:14",
+			")",
+		],
+		"description": "R, data.frame, ctor",
+	},
+
+	"R-matrix-bind-cols": {
+		"prefix": "mbcols",
+		"body": [
+			"bind_cols(${1:df1}, ${2:df2})",
+		],
+		"description": "R, matrix, bind_cols, hstack",
+	},
+
+	"R-matrix-bind-rows": {
+		"prefix": "mbrows",
+		"body": [
+			"bind_rows(${1:df1}, ${2:df2})",
+		],
+		"description": "R, matrix, bind_rows, vstack",
+	},
+
+	"R-matrix-filter": {
+		"prefix": "mfilter",
+		"body": [
+			"filter(${1:df}, x=${2:condi})",
+		],
+		"description": "R, matrix, filter, mask",
+	},
+
+	"R-matrix-distinct": {
+		"prefix": "mdistinct",
+		"body": [
+			"distinct(df, ${1:z})",
+		],
+		"description": "R, matrix, distinct, unique",
+	},
+
+	"R-matrix-slice": {
+		"prefix": "mslice",
+		"body": [
+			"slice(df, ${1:10}:${2:15})",
+		],
+		"description": "R, matrix, slice, select rows by position",
+	},
+
+	"R-matrix-slicemax": {
+		"prefix": "mslicemax",
+		"body": [
+			"slice_max(df, ${1:z}, prop=0.25)",
+		],
+		"description": "R, matrix, slicemax, select rows with the highest values",
+	},
+
+	"R-matrix-pull": {
+		"prefix": "mpull",
+		"body": [
+			"pull(df, ${1:y})",
+		],
+		"description": "R, matrix, pull, Extracts column values as a vector, by name or index",
+	},
+
+	"R-matrix-select": {
+		"prefix": "mselect",
+		"body": [
+			"select(df, ${1:x}, ${2:y})",
+		],
+		"description": "R, matrix, Extracts columns as a table",
+	},
+
+	"R-matrix-relocate": {
+		"prefix": "mrelocate",
+		"body": [
+			"relocate(df, ${1:x}, .after = last_col())",
+		],
+		"description": "R, matrix, Moves columns to a new position",
+	},
+
+	"R-matrix-rename": {
+		"prefix": "mrename",
+		"body": [
+			"rename(df, ${1:'age'} = ${2:z})",
+		],
+		"description": "R, matrix, Renames columns",
+	},
+
+	"R-matrix-arrange": {
+		"prefix": "marrange",
+		"body": [
+			"arrange(df, desc(${1:x}))",
+		],
+		"description": "R, matrix, Orders rows by values of a column from high to low",
+	},
+
+	"R-matrix-summarise": {
+		"prefix": "msummarise",
+		"body": [
+			"summarise(df, total = sum(${1:x}))",
+		],
+		"description": "R, matrix, Computes table of summaries",
+	},
+
+	"R-matrix-groupby": {
+		"prefix": "mgroupby",
+		"body": [
+			"df %>% ",
+			"\tgroup_by(${1:z}) %>% ",
+			"\tsummarise(total = sum(${2:x}))",
+		],
+		"description": "R, matrix, Use group_by() to create a rouped copy of a table grouped by columns (similarly to a pivot table in spreadsheets). dplyr functions will then manipulate each group separately and combine the results",
+	},
+
+	"R-RCIV": {
+		"prefix": "RCIV",
+		"body": [
+			"# Recursive => Curry => Infix => Vectorization"
+		],
+		"description": "R, RCIV",
+	},
+
+	"R-UPMED": {
+		"prefix": "UPMED",
+		"body": [
+			"# understand business => understand data => prep data => model => evaluation => deploy"
+		],
+		"description": "R, UPMED",
+	},
+
+	"R-one-two-sided": {
+		"prefix": "sided",
+		"body": [
+			"# one-sided: Ha > F, `above`",
+			"# two-sided: Ha != -F, `away`",
+		],
+		"description": "R, statistical tests, one-sided, two-sided",
+	},
+}

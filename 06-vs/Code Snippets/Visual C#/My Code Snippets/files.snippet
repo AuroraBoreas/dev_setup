@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- file io -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>fileio</Title>
+			<Shortcut>fileio</Shortcut>
+			<Description>Code snippet for File Write or Applend All Lines</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System.IO</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>filename</ID>
+					<ToolTip>File name</ToolTip>
+					<Default>filename</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			// Write the text to a new file named "WriteFile.txt".
+			File.WriteAllText(Path.Combine(docPath, "$filename$.txt"), text);
+			// Create a string array with the additional lines of text
+			string[] lines = { "New line 1", "New line 2" };
+			// Append new lines of text to the file
+			File.AppendAllLines(Path.Combine(docPath, "$filename$.txt"), lines);]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- file read -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>file read</Title>
+			<Shortcut>fileread</Shortcut>
+			<Description>Code snippet for read file</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System.IO</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>StreamReader</Default>
+				</Literal>
+				<Literal>
+					<ID>filename1</ID>
+					<ToolTip>File name</ToolTip>
+					<Default>filename1</Default>
+				</Literal>
+				<Literal>
+					<ID>filename2</ID>
+					<ToolTip>File name</ToolTip>
+					<Default>filename2</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[try
+			{
+				using ($T$ sr1 = new $T$("$filename1$"), sr2 = new $T$("$filename2$"))
+				{
+					// business logic here
+				}
+			}
+			catch (IOException _)
+			{
+				// IOException handling here
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- file write -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>file write</Title>
+			<Shortcut>filewrite</Shortcut>
+			<Description>Code snippet for write file</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System.IO</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>docPath</ID>
+					<ToolTip>Folder name</ToolTip>
+					<Default>docpath</Default>
+				</Literal>
+				<Literal>
+					<ID>filename</ID>
+					<ToolTip>File name</ToolTip>
+					<Default>filename</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[using (StreamWriter sw = new StreamWriter(Path.Combine($docPath$, "$filname$.txt"), true))
+			{
+				foreach (string line in lines)
+					sw.WriteLine(line);
+					// await sw.WriteAsync(line);
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

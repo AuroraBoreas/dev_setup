@@ -1,0 +1,85 @@
+{
+	"jupyter-md-title": {
+		"scope": "ipynb, markdown",
+		"prefix": "jupyter-md-title",
+		"body": [
+			"### 20${1:24}${2:mmdd} mathopolis daily\n",
+			"1. $0",
+		],
+		"description": "Jupyter Notebook, markdown, title"
+	},
+
+	"jupyter-array": {
+		"scope": "ipynb, markdown",
+		"prefix": "jupyter-array",
+		"body": [
+			"$$\\begin{${1|array,align,bmatrix,pmatrix,vmatrix|}}{c|c}",
+			"\\text{step} & \\text{result} \\ $2\\",
+			"\\hline",
+			"1 & $0",
+			"\\end{$1}$$\n",
+		],
+		"description": "Jupyter Notebook, katex, array"
+	},
+
+	"jupyter-group": {
+		"scope": "ipynb, markdown",
+		"prefix": "jupyter-group",
+		"body": [
+			"$$\\begin{${1|array,align,bmatrix,pmatrix,vmatrix|}}",
+			"$0",
+			"\\end{$1}$$",
+		],
+		"description": "Jupyter Notebook, katex, group"
+	},
+
+	"jupyter-toc": {
+		"scope": "ipynb, markdown",
+		"prefix": "jupyter-toc",
+		"body": [
+			"### Table of Contents\n",
+			"* [${1:Chapter 1}](#${2:chapter1})",
+			"\t* [${3:Section 1.1}](#${4:section_1_1})",
+			"\t\t* [${5:Section 1.1.1}](#${6:section_1_1_1})",
+		],
+		"description": "Jupyter Notebook, Table of Content"
+	},
+
+	"jupyter-anchor": {
+		"scope": "ipynb, markdown",
+		"prefix": "jupyter-anchor",
+		"body": [
+			"### ${1:Chapter 1} <a class=\"anchor\" id=\"${2:chapter1}\"></a>",
+		],
+		"description": "Jupyter Notebook, anchor, note: pair anchor with its header-level and id"
+	},
+
+	"jupyter-img": {
+		"scope": "ipynb, markdown",
+		"prefix": "jupyter-img",
+		"body": [
+			"![${1:imgName}](${2:../static/04_vectors_additivity.png})",
+		],
+		"description": "Jupyter Notebook, insert image"
+	},
+
+	"jupyter-bokeh": {
+		"scope": "ipynb, markdown",
+		"prefix": "jupyter-bokeh",
+		"body": [
+			"from bokeh.plotting import figure, show",
+			"from bokeh.plotting import output_notebook",
+		],
+		"description": "Jupyter Notebook, Bokeh, display figure without opening a separate window"
+	},
+
+	"jupyter-table": {
+		"prefix": "jupyter-table",
+		"body": [
+			"| ${1:col1} | ${2:col2} | ${3:col3} |",
+			"|------|:----:|-----:|",
+			"| $4   |  $5  |  $6  |",
+		],
+		"description": "Jupyter, table, general form",
+	},
+}

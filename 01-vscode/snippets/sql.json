@@ -1,0 +1,183 @@
+{
+	"pgsql-function-scalar": {
+		"prefix": "pgsql-function-scalar",
+		"body": [
+			"CREATE OR REPLACE FUNCTION ${1:methodName}(${2:arg1} ${3:T1}, ${4:arg2} ${5:T2}) RETURNS ${6:R} AS $$",
+			"BEGIN",
+			"\tRETURN $2 * (1 - $4);$0",
+			"END;",
+			"$$ LANGUAGE plpgsql;",
+		],
+		"description": "pgsql, user-defined function, scalar"
+	},
+
+	"pgsql-function-table": {
+		"prefix": "pgsql-function-table",
+		"body": [
+			"CREATE OR REPLACE FUNCTION ${1:methodName}(${2:fieldValue} ${3:T}) RETURNS TABLE (${4:field1} INT, ${5:field2} VARCHAR, ${6:field3} VARCHAR) AS $$",
+			"BEGIN",
+			"\tRETURN QUERY SELECT $4, $5, $6 FROM ${7:tableName} WHERE $6 ILIKE $2;",
+			"END;",
+			"$$ LANGUAGE plpgsql;",
+		],
+		"description": "pqsql, user-defined function, sub table"
+	},
+
+	"pgsql-function-agg": {
+		"prefix": "pgsql-function-agg",
+		"body": [
+			"CREATE OR REPLACE FUNCTION ${1:methodName}() RETURNS FLOAT AS $$",
+			"DECLARE",
+			"\t${2:agg_What} FLOAT;",
+			"BEGIN",
+			"\tSELECT ${3:agg}(${4:field}) INTO $2 FROM ${5:tableName};",
+			"\tRETURN $2;",
+			"END;",
+			"$$ LANGUAGE plpgsql;",
+		],
+		"description": "pgsql, user-defined function, aggregate"
+	},
+
+	"pgsql-procedure-store": {
+		"prefix": "pgsql-procedure-store",
+		"body": [
+			"CREATE OR REPLACE PROCEDURE ${1:procedureName}(${2:fieldValue1} ${3:T1}, ${4:fieldValue2} ${5:T2}) AS $$",
+			"BEGIN",
+			"\tUPDATE ${6:tableName} SET ${7:field1} = $4 WHERE ${8:field2} = $2;",
+			"\tCOMMIT;",
+			"END;",
+			"$$ LANGUAGE plpgsql;",
+		],
+		"description": "pgsql, user-defined function, store procedure"
+	},
+
+	"pgsql-cte": {
+		"prefix": "pgsql-cte",
+		"body": [
+			"WITH ${1:tableName}(${2:field1}$3) AS (",
+			"\t$0",
+			")",
+			"TABLE $1",
+		],
+		"description": "pgsql, CTE, aliased subquery"
+	},
+
+	"pqsql-types-display": {
+		"prefix": "pgsql-types-display",
+		"body": [
+			"SELECT string_agg(t.typname, ' ')",
+			"FROM pg_catalog.pg_type AS t",
+			"WHERE t.typelem = 0 AND t.typrelid = 0;",
+		],
+		"description": "pgsql, display built-in data types"
+	},
+
+	"pgsql-set-datestyle": {
+		"prefix": "pgsql-set-datestype",
+		"body": [
+			"ALTER DATABASE ${1:database_name} SET datestyle TO 'ISO, MDY';"
+		],
+		"description": "pgsql, database, set datestyle"
+	},
+
+	"pgsql-enum": {
+		"prefix": "pgsql-enum",
+		"body": [
+			"CREATE TYPE ${1:typeName} AS ENUM ('${2:v1}', '${3:v2}', '${4:v3}');"
+		],
+		"description": "pgsql, customize data type"
+	},
+
+	"pgsql-constraints": {
+		"prefix": "pgsql-constraints",
+		"body": [
+			"--🌌P U E: prime key, unique, exclude",
+			"--🌌F N C: foreign key, not-null, check,",
+			"--🍎N T C: similar to variable declarationn; col_name, data type, constraint, initialization",
+		],
+		"description": "pgsql, built-in constraints"
+	},
+
+	"pgsql-constraint-create": {
+		"prefix": "pgsql-constraint-create",
+		"body": [
+			"${1:field} ${2:T} CONSTRAINT ${3:constraintName} CHECK ($1 > 0$0),",
+		],
+		"description": "pgsql, CREATE table, field definition, CHECK"
+	},
+
+	"pgsql-constraint-pk": {
+		"prefix": "pgsql-constraint-pk",
+		"body": [
+			"PRIMARY KEY (${1:field1}, ${2:field2})",
+		],
+		"description": "pgsql, CREATE table, field definition, PRIMARY KEY"
+	},
+
+	"pgsql-constraint-fk1": {
+		"prefix": "pgsql-constraint-fk1",
+		"body": [
+			"${1:field} ${2:T} REFERENCES ${3:otherTable} (${4:pk}),",
+		],
+		"description": "pgsql, CREATE table, field definition, FOREIGN KEY inline"
+	},
+
+	"pgsql-constraint-fk2": {
+		"prefix": "pgsql-constraint-fk2",
+		"body": [
+			"FOREIGN KEY (${1:field1}, ${2:field2}) REFERENCES ${3:otherTable} (${4:f1}, ${5:f2}),",
+		],
+		"description": "pgsql, CREATE table, field definition, FOREIGN KEY 2"
+	},
+
+	"pgsql-constraint-exclude": {
+		"prefix": "pgsql-constraint-exclude",
+		"body": [
+			"EXCLUDE USING ${1:operator1} (${2:field} WITH ${3:operator2})",
+		],
+		"description": "pgsql, CREATE table, field definition, exclude"
+	},
+
+	"pgsql-function-duration": {
+		"prefix": "pgsql-function-duration",
+		"body": [
+			"CREATE FUNCTION ${1:methodName}(x time, y time) RETURNS ${2:float8} AS",
+			"'SELECT EXTRACT(EPOCH FROM (x - y))' LANGUAGE sql STRICT IMMUTABLE;",
+		],
+		"description": "pgsql, time duration"
+	},
+
+	"pgsql-range": {
+		"prefix": "pgsql-range-custom",
+		"body": [
+			"CREATE TYPE ${1:rangeName} AS RANGE (",
+			"\tsubtype = ${2:time},",
+			"\tsubtype_diff = ${3:func}",
+			");",
+		],
+		"description": "pgsql, create range type"
+	},
+
+	"sqlite3-pragma": {
+		"prefix": "sqlite3-pragma",
+		"body": [
+			"PRAGMA table_info(${1:table});"
+		],
+		"description": "SQLite3, show the table info"
+	},
+
+	"sql-general-concepts": {
+		"prefix": "sql-concepts",
+		"body": [
+			"-- General Concepts of SQL:",
+			"-- PIQ: Profiling, Indexing, Querying",
+			"-- Profiling: APM, DTL, django-silk",
+			"-- Indexing: non-standard, `covering`, partial, cluster-table",
+			"-- Querying: ",
+			"-- General Guide (RW): read-heavy => postgres(apply B-tree indexing by default); write-heavy => MySQL, MyRock(LSM, SST)",
+			"-- Postgres Index Classes(BR,GG,BH): B-Tree, GIN, GiST, BRIN, Hash, R-Tree",
+		],
+		"description": "SQL, general concepts"
+	},
+	
+}

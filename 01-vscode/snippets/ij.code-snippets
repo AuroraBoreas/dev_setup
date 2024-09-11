@@ -1,0 +1,131 @@
+{
+  "ij-macro": {
+    "scope": "ijm",
+    "prefix": "ij-macro",
+    "body": [
+      "macro \"${1:name} [${2:key}]\" {",
+      "\t$3",
+      "}",
+    ],
+    "description": "ImageJ2, macro template"
+  },
+
+  "ij-tool": {
+    "scope": "ijm",
+    "prefix": "ij-tool",
+    "body": [
+      "macro \"${1:name} Tool - ${2:C0a0L18f8L818f}\" {",
+      "\t$3",
+      "}",
+    ],
+    "description": "ImageJ2, Tools"
+  },
+
+  "ij-tool-macro-icons": {
+    "scope": "ijm",
+    "prefix": "ij-toolicons",
+    "body": [
+      "Crgb   - set color",
+      "Bxy    - set base location (default is (0,0))",
+      "Rxywh  - darw rectangle",
+      "Fxywh  - draw filled rectangle",
+      "Oxywh  - draw oval",
+      "oxywh  - draw filled oval",
+      "Lxyxy  - draw line",
+      "Dxy    - draw dot",
+      "Pxyxy...xy0 - draw polyline",
+      "Txyssc - draw character",
+      "where:",
+      "x is x coordinate",
+      "y is y coordinate",
+      "w is width",
+      "h is height",
+      "r is red",
+      "g is green",
+      "b is blue",
+      "are lower case hex digits that specify a value in the range 0-15"
+    ],
+    "description": "ImageJ2, macro tool icons"
+  },
+
+  "ij-tool-options": {
+    "scope": "ijm",
+    "prefix": "ij-toolopt",
+    "body": [
+      "macro \"${1:name} Tool Options\" {",
+      "\t$3",
+      "}",
+    ],
+    "description": "ImageJ2, Tool Options"
+  },
+
+  "ij-action-tool": {
+    "scope": "ijm",
+    "prefix": "ij-toolact",
+    "body": [
+      "macro \"${1:name} Action Tool - ${2:hexadecimal_code_as_icon}\" {",
+      "\tdoCommand(\"About ImageJ...\")",
+      "}",
+    ],
+    "description": "ImageJ2, Action tools"
+  },
+
+  "ij-menu-tool": {
+    "scope": "ijm",
+    "prefix": "ij-toolmenu",
+    "body": [
+      "var sCmds = newMenu(\"${1:My Menu Tool}\",",
+      "\tnewArray(\"${2:macroName1}\",\"${3:macroName2}\",\"-\",\"${4:MyFunction}\"",
+      "));",
+      "macro \"$1 - ${5:C037T1d16M}\" {",
+      "\tcmd = getArgument();",
+      "\tif (cmd==\"MyFunction\") {",
+      "\t\tprint(\"MyFunction\");",
+      "\t\texit;",
+      "\t}",
+      "\tif (cmd!=\"-\") run(cmd);",
+      "}",
+    ],
+    "description": "ImageJ2, Action tools"
+  },
+
+  "ij-popup-menu": {
+    "scope": "ijm",
+    "prefix": "ij-popup",
+    "body": [
+      "var sCmds = newMenu(\"${1:Popup Menu}\",",
+      "\tnewArray(\"${2:Help...}\",\"${3:macroName1}\",\"${4:macroName2}\"",
+      "));",
+      "macro \"$1\" {",
+      "\tcmd = getArgument();",
+      "\tif (cmd==\"$2\") {",
+      "\t\tshowMessage(\"About Popup Menu\", \"To customize this menu, edit the line that starts with\\n\"+",
+      "\t\t\"`var pmCmds` in ImageJ/macros/StartupMacros.txt.\");",
+      "\t} else {",
+      "\t\trun(cmd);",
+      "\t}",
+      "}",
+    ],
+    "description": "ImageJ2, Popup menu"
+  },
+
+  "ij-global-var": {
+    "scope": "ijm",
+    "prefix": "ij-var",
+    "body": [
+      "var ${1:varName} = ${2:69}",
+    ],
+    "description": "ImageJ2, global variable must be declared with var keyword otherwise"
+  },
+
+  "ij-function": {
+    "scope": "ijm",
+    "prefix": "ij-pvm",
+    "body": [
+      "function ${1:methodName}(${2:args}) {",
+      "\t$3",
+      "}"
+    ],
+    "description": "ImageJ2, function templates"
+  },
+}

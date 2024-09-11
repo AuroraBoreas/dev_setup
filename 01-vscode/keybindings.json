@@ -1,0 +1,62 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+alt+6",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "ctrl+shift+s",
+        "command": "workbench.action.files.saveAll"
+    },
+    {
+        "key": "unknown",
+        "command": "-workbench.action.files.saveAll"
+    },
+    {
+        "key": "ctrl+alt+m",
+        "command": "editor.action.refactor",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "-editor.action.refactor",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+alt+s",
+        "command": "workbench.action.toggleScreencastMode"
+    },
+    {
+        "key": "ctrl+f9",
+        "command": "python.execInTerminal-icon"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-notebook.centerActiveCell",
+        "when": "notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+oem_period",
+        "command": "-editor.changePasteType",
+        "when": "pasteWidgetVisible"
+    },
+    {
+        "key": "ctrl+oem_period",
+        "command": "-editor.changeDropType",
+        "when": "dropWidgetVisible"
+    },
+    {
+        "key": "ctrl+oem_period",
+        "command": "-problems.action.showQuickFixes",
+        "when": "problemFocus"
+    },
+    {
+        "key": "ctrl+oem_period",
+        "command": "-acceptSelectedCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    // {
+    //     "key": "shift+enter",
+    //     "command": "workbench.action.terminal.runSelectedText",
+    // },
+]

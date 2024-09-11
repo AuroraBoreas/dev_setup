@@ -1,0 +1,331 @@
+{
+	"cpp-guard-define": {
+		"prefix": "cpp-guard-define",
+		"body": [
+			"#ifndef ${1:ids}",
+			"#define $1",
+			"$0",
+			"#endif\n",
+		],
+		"description": "C++, guards header file to generate multiple copy-paster when importing"
+	},
+
+	"cpp-console-alive": {
+		"prefix": "cpp-console-alive",
+		"body": [
+			"std::cout << \"press any key to continue..\n\";",
+			"std::cin.ignore();",
+		],
+		"description": "C++, keep console alive"
+	},
+
+	"pvm": {
+		"prefix": "pvm",
+		"body": [
+			"void ${1:methodName}($2) {",
+			"\t$0",
+			"}",
+		],
+		"description": "C++, method"
+	},
+
+	"pobm": {
+		"prefix": "pobm",
+		"body": [
+			"${1:T} ${2:methodName}($3) {",
+			"\t$0",
+			"}",
+		],
+		"description": "C++, method that return an object"
+	},
+
+	"vob": {
+		"prefix": "vob",
+		"body": [
+			"std::vector<${1:T}> v {};",
+		],
+		"description": "C++, std::vector<T>"
+	},
+
+	"lob": {
+		"prefix": "lob",
+		"body": [
+			"std::list<${1:T}> v {};",
+		],
+		"description": "C++, std::list<T>"
+	},
+
+	"mob": {
+		"prefix": "mob",
+		"body": [
+			"std::map<${1:T1}, ${2:T2}> map;",
+		],
+		"description": "C++, std::map<T1,T2>"
+	},
+
+	"sob": {
+		"prefix": "sob",
+		"body": [
+			"std::set<${1:T}> s{};",
+		],
+		"description": "C++, std::set<T>"
+	},
+
+	"typedef": {
+		"prefix": "typedef",
+		"body": [
+			"typedef ${1:original-type} ${2:your-alias};",
+		],
+		"description": "<C++11, typedef"
+	},
+
+	"using": {
+		"prefix": "using",
+		"body": [
+			"using ${1:your-alias} = ${2:original-type};",
+		],
+		"description": "C++11~, using"
+	},
+	
+	"usingtemplate": {
+		"prefix": "usingtemplate",
+		"body": [
+			"template<typename ${1:T1}, typename ${2:T2}> using ${3:your-alias} = std::map<$1, std::vector<$2>>;",
+			"// Actual type: std::map<std::string, std::vector<std::string>> (as in the original example)",
+			"Map<std::string, std::string> map1;",
+			"// Actual type: std::map<int, std::vector<int>>",
+			"Map<int, int> map2;",
+			"// Actual type: std::map<int, std::vector<float>>",
+			"Map<int, float> map3;",
+		],
+		"description": "C++11~, template<[template-parameter-list]> using [your-alias] = [original-type];"
+	},
+
+	"cout": {
+		"prefix": "cout",
+		"body": [
+			"std::cout << ${1:\"hello world\"} << std::endl;",
+		],
+		"description": "C++, std::cout"
+	},
+
+	"fori": {
+		"prefix": "fori",
+		"body": [
+			"for(int i=0; i<$1; i++) {",
+			"\t$0",
+			"}",
+		],
+		"description": "C++, fori"
+	},
+
+	"fe": {
+		"prefix": "fe",
+		"body": [
+			"for (const auto& ${1:e} : ${2:v}) {",
+			"\t$0",
+			"}",
+		],
+		"description": "C++, for...in"
+	},
+
+	"range": {
+		"prefix": "range",
+		"body": [
+			"for (${1:auto} e: ${2:a}) {",
+			"\t$0",
+			"}",
+		],
+		"description": "C++11~, Range-based for loop"
+	},
+
+	"foreach": {
+		"prefix": "foreach",
+		"body": [
+			"std::for_each(${1:v}.cbegin(), $1.cend(), [](){ $0; })",
+		],
+		"description": "C++, std::for_each"
+	},
+
+	"opov": {
+		"prefix": "opov",
+		"body": [
+			"${1:T}& operator${2:()}(const T& other) {",
+			"\t$0",
+			"}",
+		],
+		"description": "C++, operator overloading"
+	},
+
+	"main": {
+		"prefix": "main",
+		"body": [
+			"int main(int argc, char** argv) {",
+			"\t$0",
+			"\treturn 0",
+			"}",
+		],
+		"description": "C++, main function with argc, argv"
+	},
+
+	"algoheap": {
+		"prefix": "algoheap",
+		"body": [
+			"std::make_heap(${1:v}.begin(), $1.end(), std::greater<>{});",
+			"std::sort_heap($1.begin(), $1.end(), std::less<>{});",
+			"$1.push_back(42);",
+			"std::push_heap($1.begin(), $1.end());",
+			"std::pop_heap($1.begin(), $1.end());",
+			"std::prev_permutation($1.begin(), $1.end());",
+			"std::next_permutation($1.begin(), $1.end());",
+		],
+		"description": "C++, <algorithm>::heap"
+	},
+
+	"algopermutation": {
+		"prefix": "algopermutation",
+		"body": [
+			"std::partition(${1:v}.begin(), $1.end(), [](auto const& e){ return e % 2 == 0; });",
+			"std::partition_point($1.begin(), $1.end(), [](const auto& e)->bool{ return e % 2 == 0; });",
+			"std::partial_sort($1.begin(), std::next(std::begin(v), 3), $1.end());",
+			"std::sort($1.begin(), $1.end());",
+			"std::random_device rd; std::mt19937 g{rd()};",
+			"std::shuffle($1.begin(), $1.end(), g);",
+			"std::reverse($1.begin(), $1.end());",
+			"std::rotate($1.begin(), $1.begin()+3, $1.end());",
+		],
+		"description": "C++, <algorithm>::permutation"
+	},
+
+	"algostruct": {
+		"prefix": "algostruct",
+		"body": [
+			"${1:v}.erase(std::remove($1.begin(), $1.end(), 99), $1.end());",
+			"$1.erase(std::unique($1.begin(), $1.end()), $1.end());",
+		],
+		"description": "C++, <algorithm>::structure_changer"
+	},
+
+	"algomover": {
+		"prefix": "algomover",
+		"body": [
+			"std::copy(${1:v}.begin(), $1.end(), std::ostream_iterator<int>(std::cout, \" \"));",
+			"std::copy_backward($1.begin(), $1.end(), ${2:u}.end());",
+			"std::move(vt.begin(), vt.end(), std::back_inserter(lt));",
+			"std::move_backward($1.begin(), $1.end(), $2.end());",
+			"std::swap_ranges(${3:m}.begin(), $3.end(), ${4:n}.begin());",
+		],
+		"description": "C++, <algorithm>::structure_changer"
+	},
+
+	"algovalue": {
+		"prefix": "algovalue",
+		"body": [
+			"std::fill(${1:v}.begin(), $1.end(), 1);",
+			"std::iota($1.begin(), $1.end(), 0);",
+			"std::replace($1.begin(), $1.end(), 1, 42);",
+			"std::srand(std::time(NULL));",
+			"std::function<int(void)> g = []()->int{ return std::rand()%30; };",
+			"std::generate($1.begin(), $1.end(), g);",
+		],
+		"description": "C++, <algorithm>::value_modifier"
+	},
+
+	"algoset": {
+		"prefix": "algoset",
+		"body": [
+			"std::set_union(${1:a}.begin(), $1.end(), ${2:b}.begin(), $2.end(), std::back_inserter(s));",
+			"std::merge($1.begin(), $1.end(), $2.begin(), $2.end(), std::back_inserter(s));",
+			"std::set_difference($1.begin(), $1.end(), $2.begin(), $2.end(), std::back_inserter(s));",
+			"std::set_intersection($1.begin(), $1.end(), $2.begin(), $2.end(), std::back_inserter(s));",
+			"std::set_symmetric_difference($1.begin(), $1.end(), $2.begin(), $2.end(), std::back_inserter(s));"
+		],
+		"description": "C++, <algorithm>::set"
+	},
+
+	"algoqueryvalue": {
+		"prefix": "algoqueryvalue",
+		"body": [
+			"std::count(${1:v}.begin(), $1.end(), x);",
+			"std::accumulate($1.begin(), $1.end(), 0.0);",
+			"std::inner_product($1.begin(), $1.end(), ${2:u}.begin(), .0);",
+			"std::random_device rd; std::mt19937 g{rd()};",
+			"std::sample($1.begin(), $1.end(), std::ostream_iterator<int>(std::cout, \" \"), 4, g);",
+			"std::adjacent_difference($1.begin(), $1.end(), std::ostream_iterator<int>(std::cout, \" \"));",
+			"std::partial_sum($1.begin(), $1.end(), std::ostream_iterator<int>(std::cout, \" \"));",
+		],
+		"description": "C++, <algorithm>::query_value"
+	},
+
+	"algoqueryproperty": {
+		"prefix": "algoqueryproperty",
+		"body": [
+			"std::nth_element(${1:v}.begin(), $1.begin()+3, std::end(v));",
+			"auto [mi, ma] = std::minmax_element($1.begin(), $1.end());",
+			"auto it = std::lower_bound($1.begin(), $1.end(), x);",
+			"it = std::upper_bound($1.begin(), $1.end(), x);",
+			"it = std::find($1.begin(), $1.end(), x);",
+			"it = std::find_first_of(${2:u}.begin(), $2.end(), $1.begin(), $1.end());",
+			"it = std::find_end($2.begin(), $2.end(), $1.begin(), $1.end());",
+			"bool rv = std::binary_search($1.begin(), $1.end(), x);",
+			"it = std::search($2.begin(), $2.end(), $1.begin(), $1.end());",
+			"rv = std::lexicographical_compare(${3:n}.begin(), $3.end(), ${4:m}.begin(), $4.end());",
+			"rv = std::equal($3.begin(), $3.end(), $4.begin(), $4.end());",
+			"auto [im, am] = std::mismatch($3.begin(), $3.end(), $4.begin());",
+		],
+		"description": "C++, <algorithm>::query_property"
+	},
+
+	"algoraw": {
+		"prefix": "algoraw",
+		"body": [
+			"// std::uninitialized_default_construct",
+			"// std::uninitialized_value_construct",
+			"// std::uninitialized_fill",
+			"// std::uninitialized_copy",
+			"// std::uninitialized_move",
+		],
+		"description": "C++, <algorithm>::raw_memory"
+	},
+
+	"algosecretrune": {
+		"prefix": "algosecretrune",
+		"body": [
+			"// *_if",
+			"// stable_*",
+			"// *_n",
+			"// *_is; *_is_unitl",
+			"// *_copy",
+		],
+		"description": "C++, <algorithm>::secret_rune"
+	},
+
+	"algoloneisland": {
+		"prefix": "algoloneisland",
+		"body": [
+			"std::for_each(${1:v}.begin(), $1.end(), [](const auto& e)->void{ std::cout << e << \" \"; });",
+			"std::transform($1.begin(), $1.end(), std::ostream_iterator<int>(std::cout, \" \"), [](const auto& e)->int{ return e*e; });",
+		],
+		"description": "C++, <algorithm>::lone_island"
+	},
+
+	"sleep": {
+		"prefix": "sleep",
+		"body": [
+			"std::this_thread::sleep_for(std::chrono::seconds(${1:3}));",
+		],
+		"description": "C++, this_thread::sleep_for"
+	},
+
+	"struct": {
+		"prefix": "struct",
+		"body": [
+			"typedef struct { // Declare an unnamed structure and give it the typedef name POINT.",
+			"\tint POINT();",
+			"\tunsigned x;",
+			"\tunsigned y;",
+			"} POINT;",
+		],
+		"description": "C++, struct, In summary, this syntax doesn't provide any mechanism for inheritance, construction, or destruction."
+	},
+}

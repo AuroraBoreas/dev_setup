@@ -1,0 +1,9 @@
+{
+	"html5-dynamicImage": {
+		"prefix": "html5-dynamicImage",
+		"body": [
+			"https://picsum.photos/${1:600}/${2:480}",
+		],
+		"description": "html5, image, dynamic for test"
+	}
+}

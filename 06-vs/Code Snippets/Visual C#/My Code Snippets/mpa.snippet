@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+    <!-- MultiThreaded, Parallel, Async -->
+    <!-- TimerCallback -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>TimerCallback</Title>
+            <Shortcut>mpatimercb</Shortcut>
+            <Description>Code snippet for TimerCallback</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Timer</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>timerCallback</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>MethodName</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[
+            // Create the delegate for the Timer type.
+            TimerCallback $name$ = new TimerCallback($MethodName$);
+            // Establish timer settings.
+            Timer t = new Timer(
+                $name$, // The TimerCallback delegate object.
+                null,   // Any info to pass into the called method (null for no info).
+                0,      // Amount of time to wait before starting (in milliseconds).
+                1000    // Interval of time between calls (in milliseconds).
+            )]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- ThreadPool -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>ThreadPool</Title>
+            <Shortcut>mpathreadpool</Shortcut>
+            <Description>Code snippet for ThreadPool</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>name</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>MethodName</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>Q</ID>
+                    <ToolTip>Quantity name</ToolTip>
+                    <Default>10</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>state</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>o</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[WaitCallback $name$ = new WaitCallback($MethodName$);
+            for (int i = 0; i < $Q$; i++)
+            {
+                //Pooled threads are always `background` threads with default priority (ThreadPriority.Normal).
+                ThreadPool.QueueUserWorkItem($name$, $state$);$end$
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- System.IAsyncResult interface -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>System.IAsyncResult interface</Title>
+            <Shortcut>asyncresult</Shortcut>
+            <Description>Code snippet for System.IAsyncResult interface</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[public interface IAsyncResult
+            {
+                object AsyncState { get; }
+                WaitHandle AsyncWaitHandle { get; }
+                bool CompletedSynchronously { get; }
+                bool IsCompleted { get; }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- priority property -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>priority property</Title>
+            <Shortcut>threadpriority</Shortcut>
+            <Description>Code snippet for priority property</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[public enum ThreadPriority
+            {
+                Lowest,
+                BelowNormal,
+                Normal, // Default value.
+                AboveNormal,
+                Highest
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- AutoResetEvent One simple, and thread-safe, way to force a thread to wait until another is completed-->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>AutoResetEvent</Title>
+            <Shortcut>mpaautoresetevent</Shortcut>
+            <Description>Code snippet for AutoResetEvent</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>autoResetEvent</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[private static AutoResetEvent $name$ = new AutoResetEvent(false);
+            // Wait here until you are notified!
+            $name$.WaitOne();
+            // embed into ThreadStart or ParameterizedThreadStart method
+            // $name$.Set();]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- IsBackground -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>IsBackground</Title>
+            <Shortcut>mpabackground</Shortcut>
+            <Description>Code snippet for IsBackground</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[/*
+            by default, any threads that are created by Thread.Start() are foreground xd
+            XXXThread.IsBackground = true; all foreground threads must finish their work before the AppDomain is unloaded from the hosting process
+            XXXThread.IsBackground = false; as soon as the logic in Main() completes, the AppDomain unloads before the secondary thread is able to complete its work.
+            */]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- lock -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>lock</Title>
+            <Shortcut>mpalock</Shortcut>
+            <Description>Code snippet for lock</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>threadLock</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[private object $name$ = new object();
+            lock($name$)
+            {
+                $end$
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Threading.Monitor -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Threading.Monitor</Title>
+            <Shortcut>mpamonitor</Shortcut>
+            <Description>Code snippet for Threading.Monitor</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>threadLock</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[private object $name$ = new object();
+            Monitor.Enter($name$);
+            try
+            {
+                //business logic
+                $end$
+            }
+            finally
+            {
+                Monitor.Exit($name$);
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Threading.Interlocked -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Threading.Interlocked</Title>
+            <Shortcut>mapinterlock</Shortcut>
+            <Description>Code snippet for Threading.Interlocked</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[Interlock.Increment($end$);]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Runtime.Remoting.Context -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Runtime.Remoting.Context</Title>
+            <Shortcut>mpacontex</Shortcut>
+            <Description>Code snippet for Runtime.Remoting.Context</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Runtime.Remoting.Context</Namespace>
+                </Import>
+                <Imports>
+                    <Import>
+                        <Namespace>System.Threading</Namespace>
+                    </Import>
+                </Imports>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>accessModifier</ID>
+                    <ToolTip>Access modifier name</ToolTip>
+                    <Default>public</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[[Synchronization]
+            $accessModifier$ class $name$: ContextBoundObject
+            {
+                $end$
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- get words from text -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>get words from text</Title>
+            <Shortcut>getwords</Shortcut>
+            <Description>Code snippet for get words from text</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>words</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>text</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>text</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[string[] $name$ = $text$.Split(new char[]{ ' ', '\u000A', ',', '.', ';', ':', '-', '?', '/' }, StringSplitOptions.RemoveEmptyEntries);]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- WPF, allows the secondary threads to access controls in a thread-safe manner -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>WPF, allows the secondary threads to access controls in a thread-safe manner</Title>
+            <Shortcut>wpfinvoke</Shortcut>
+            <Description>Code snippet for WPF, allows the secondary threads to access controls in a thread-safe manner</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>filename</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[this.Dispatcher.Invoke((Action)delegate
+            {
+                this.Title = $$"Processing {$name$} on thread {Thread.CurrentThread.ManagedThreadId}";$end$
+            };]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Parallel.ForEach -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Parallel.ForEach</Title>
+            <Shortcut>tplforeach</Shortcut>
+            <Description>Code snippet for Parallel.ForEach</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Compatible container name</ToolTip>
+                    <Default>collection</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>MethodName</ID>
+                    <ToolTip>Parallel-wrapped Method name</ToolTip>
+                    <Default>TplMethodName</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//general form: Parallel.For|ForEach(IEnumerable | IEnumerable<T>, Action<T> | Func<T>)
+            Parallel.ForEach($name$, $MethodName$);$end$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Parallel.For -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Parallel.For</Title>
+            <Shortcut>tplfor</Shortcut>
+            <Description>Code snippet for Parallel.For</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>startIndex</ID>
+                    <ToolTip>Index</ToolTip>
+                    <Default>0</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>endIndex</ID>
+                    <ToolTip>Index</ToolTip>
+                    <Default>endIndex</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//general form: Parallel.For|ForEach(IEnumerable | IEnumerable<T>, Action<T> | Func<T>)
+            Parallel.For($startIndex$, $endIndex$, (i) =>
+            {
+                //Interlocked.Add(ref sum, numbers[i]);$end$
+            });]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Task.Factory -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Task.Factory</Title>
+            <Shortcut>tplfactory</Shortcut>
+            <Description>Code snippet for Task.Factory</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>MethodName</ID>
+                    <ToolTip>Parallel-wrapped Method name</ToolTip>
+                    <Default>TplMethodName</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[Task.Factory.StartNew(() => $MethodName$());$end$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Handling cancellation request -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Handling cancellation request</Title>
+            <Shortcut>tplcanceltoken</Shortcut>
+            <Description>Code snippet for Handling cancellation request</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[private CancellationTokenSource cancelToken = new CancellationTokenSource();
+            //cancelToken.Cancel();]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Handling cancellation request -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Handling cancellation request</Title>
+            <Shortcut>tplcancel</Shortcut>
+            <Description>Code snippet for Handling cancellation request</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>collection</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//Use ParallelOptions instance to store the CancellationToken.
+            ParallelOptions parOpts = new ParallelOptions();
+            parOpts.CancellationToken = cancelToken.Token;
+            parOpts.MaxDegreeOfParallelism = System.Environment.ProcessorCount;
+            try
+            {
+                Parallel.ForEach($name$, e => {
+                    parOpts.CancellationToken.ThrowIfCancellationRequested();
+                    //business logic here$end$
+                });
+                //more business logic here
+            }
+            catch (OperationCanceledException ex)
+            {
+                //Exception handling here xd
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Parallel.Invoke -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Parallel.Invoke</Title>
+            <Shortcut>tplinvoke</Shortcut>
+            <Description>Code snippet for Parallel.Invoke</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>MethodName1</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName1</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>MethodName2</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName2</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>MethodNameN</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodNameN</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//general form: Parallel.Invoke(Action<T>-compatible delegates)
+            Parallel.Invoke($MethodName1$, $MethodName1$, $MethodNameN$$end$);]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- PLinq -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>PLinq</Title>
+            <Shortcut>plinq</Shortcut>
+            <Description>Code snippet for PLinq</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+                <Import>
+                    <Namespace>System.Linq</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>object name</ToolTip>
+                    <Default>name</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[$T$[] $name$ = null;
+            try
+            {
+                //business logic here
+                $name$ = (from e in source.AsParallel().WithCancellation(cancelToken.Token)
+                        where e % 3 == 0
+                        orderby e descending
+                        select e).ToArray();
+                //more
+            }
+            catch (OperationCanceledException ex)
+            {
+                //Exception handling here
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- generic async method -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>generic async method</Title>
+            <Shortcut>asyncgmeth</Shortcut>
+            <Description>Code snippet for generic async method</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>accessModifier</ID>
+                    <ToolTip>Access modifier name</ToolTip>
+                    <Default>public</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>memberModifier</ID>
+                    <ToolTip>Member modifier name</ToolTip>
+                    <Default>static</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[$accessModifier$ $memberModifer$ async Task<$R$> $MethodName$Async($T$ arg)
+            {
+                return await Task.Run(
+                    //business-logic, Func<> | Action<>delegate$end$
+                );
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- async method return void -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>async method return void</Title>
+            <Shortcut>asyncvoidmeth</Shortcut>
+            <Description>Code snippet for async method return void</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+                <Import>
+                    <Namespace>System.Threading</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>accessModifier</ID>
+                    <ToolTip>Access modifier name</ToolTip>
+                    <Default>public</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>memberModifier</ID>
+                    <ToolTip>Member modifier name</ToolTip>
+                    <Default>static</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[$accessModifier$ $memberModifer$ async Task $MethodName$Async($T$ arg)
+            {
+                //Async Methods with Multiple Awaits
+                await Task.Run(
+                    //business-logic, Func<> | Action<>delegate$end$
+                );
+
+                await Task.Run(
+                    //business-logic, Func<> | Action<>delegate$end$
+                );
+
+                await Task.Run(
+                    //business-logic, Func<> | Action<>delegate$end$
+                );
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- non-async method calls async method -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>non-async method calls async method</Title>
+            <Shortcut>asyncresult</Shortcut>
+            <Description>Code snippet for non-async method calls async method</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+                <Import>
+                    <Namespace>System.Threading</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>MethodName</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodNameAsync</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[$MethodName$().Result;// it waits for execution to complete and then returns the underlying data of the Task
+            $MethodName$().Wait();//To halt execution until an async method returns with a void return type
+            ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- await in try catch finally -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>await in try catch finally</Title>
+            <Shortcut>asynctrycf</Shortcut>
+            <Description>Code snippet for await in try catch finally</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[
+            try
+            {
+                //business logic here
+                return "Hello";
+            }
+            catch (Exception ex)
+            {
+                await LogTheErrors();
+                throw;
+            }
+            finally
+            {
+                await DoMagicCleanUp();
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- install nuget package -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>install nuget package</Title>
+            <Shortcut>cmdnugetinstallpkg</Shortcut>
+            <Description>Code snippet for install nuget package</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>System.Threading.Tasks.Extensions</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[//install-package $name$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- async local method -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>async local method</Title>
+            <Shortcut>asynclocalmeth</Shortcut>
+            <Description>Code snippet for async local method</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Threading.Tasks</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>accessModifier</ID>
+                    <ToolTip>Access modifier name</ToolTip>
+                    <Default>public</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>memberModifer</ID>
+                    <ToolTip>Member modifier name</ToolTip>
+                    <Default>static</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>MethodName</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>MethodName</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T1</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T1</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T2</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T2</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[$accessModifier$ $memberModifier$ async Task<$R$> $MethodName$Async($T1$ arg1, $T2$ arg2$end$)
+            {
+                //business logic here, parameter check etc.
+                if (arg2 < 0)
+                {
+                    return;
+                }
+                return await ActualImplementationAsync(arg1, arg2);
+
+                async Task<$R$> ActualImplementationAsync($T1$ arg1, $T2$ arg2)
+                {
+                    await Task.Run(() =>
+                    {
+                        //more business logic
+                    });
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

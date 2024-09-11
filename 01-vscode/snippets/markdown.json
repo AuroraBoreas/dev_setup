@@ -1,0 +1,338 @@
+{
+	"md-struct": {
+		"prefix": "md-struct",
+		"body": [
+			"# Software Development Document\n",
+			"## Table of Contents\n",
+			"- [Introduction](#introduction)",
+			"- [Requirements](#requirements)",
+			"- [Design](#design)",
+			"- [Implementation](#implementation)",
+			"- [Testing](#testing)",
+			"- [Deployment](#deployment)",
+			"- [Maintenance](#maintenance)",
+			"- [Changelog](#changelog)",
+			"- [Version](#version)",
+			"- [Author](#author)",
+			"- [License](#license)",
+			"- [Conclusion](#conclusion)\n",
+			"## Introduction\n",
+			"In this section, provide an overview of the software project. Include information about the purpose of the software, its intended audience, and any relevant background information.\n",
+			"## Requirements\n",
+			"Describe the functional and non-functional requirements of the software. This section should outline what the software should do and any constraints or limitations it must adhere to.\n",
+			"## Design\n",
+			"Explain the high-level design of the software. This can include architectural diagrams, data flow diagrams, and any other relevant design documentation. Describe the overall structure of the software and how different components interact with each other.\n",
+			"## Implementation\n",
+			"Provide details about the implementation of the software. This can include information about the programming languages, frameworks, and libraries used. Explain any important algorithms or data structures employed in the software.\n",
+			"## Testing\n",
+			"Describe the testing approach for the software. This section should include information about unit tests, integration tests, and any other types of testing performed. Explain the tools and frameworks used for testing and provide examples of test cases.\n",
+			"## Deployment\n",
+			"Explain how the software is deployed and made available to users. Include information about the deployment environment, any required dependencies, and the steps to install and configure the software.\n",
+			"## Maintenance\n",
+			"Outline the ongoing maintenance and support activities for the software. This can include information about bug fixes, updates, and user support. Describe any processes or tools used for maintaining the software.\n",
+			"## Changelog\n",
+			"List the changes made to the software in chronological order. Include the date and a brief description of each change.\n",
+			"## Version\n",
+			"Current version: [Version X.Y.Z]\n",
+			"## Author\n",
+			"Provide information about the author or authors of the software.\n",
+			"## License\n",
+			"Specify the license under which the software is distributed. Include any relevant terms and conditions.\n",
+			"## Conclusion\n",
+			"Summarize the software development document and provide any closing remarks. Include any future plans or improvements for the software.\n",
+		],
+		"description": "markdown, software development document structure"
+	},
+
+	"md-test": {
+		"prefix": "md-test",
+		"body": [
+			"### Test Cases\n",
+			"#### Test Case 1: [Description of the test case]\n",
+			"- **Preconditions:** [Any necessary preconditions for the test]",
+			"- **Steps:** [Step-by-step instructions for executing the test]",
+			"- **Expected Result:** [The expected outcome of the test]\n",
+			"#### Test Case 2: [Description of another test case]\n",
+			"- **Preconditions:** [Any necessary preconditions for the test]",
+			"- **Steps:** [Step-by-step instructions for executing the test]",
+			"- **Expected Result:** [The expected outcome of the test]\n",
+			"### Test Results\n",
+			"#### Test Result 1: [Description of the test case]\n",
+			"- **Result:** [Pass/Fail]",
+			"- **Actual Result:** [The observed outcome of the test]",
+			"- **Notes:** [Any additional notes or observations about the test]\n",
+			"#### Test Result 2: [Description of another test case]\n",
+			"- **Result:** [Pass/Fail]",
+			"- **Actual Result:** [The observed outcome of the test]",
+			"- **Notes:** [Any additional notes or observations about the test]\n",
+		],
+		"description": "markdown, test, reference"
+	},
+
+	"md-deploy": {
+		"prefix": "md-deploy",
+		"body": [
+			"1. **Step 1:** Description of the first deployment step.",
+			"2. **Step 2:** Description of the second deployment step.",
+			"3. **Step 3:** Description of the third deployment step.",
+			"4. **Step 4:** Description of the fourth deployment step.\n",
+		],
+		"description": "markdown, deployment, reference"
+	},
+
+	"md-maintain": {
+		"prefix": "md-maintain",
+		"body": [
+			"### [Date]\n",
+			"- **Task 1:** Description of the maintenance task performed.",
+			"- **Task 2:** Description of another maintenance task performed.",
+			"- **Task 3:** Description of a new maintenance task performed.\n",
+		],
+		"description": "markdown, maintain, reference"
+	},
+
+	"md-require": {
+		"prefix": "md-require",
+		"body": [
+			"### Functional Requirements\n",
+			"1. [Requirement 1]: [Description of the requirement]",
+			"2. [Requirement 2]: [Description of the requirement]",
+			"3. [Requirement 3]: [Description of the requirement]\n",
+			"### Non-Functional Requirements\n",
+			"1. [Requirement 1]: [Description of the requirement]",
+			"2. [Requirement 2]: [Description of the requirement]",
+			"3. [Requirement 3]: [Description of the requirement]\n",
+		],
+		"description": "markdown, requirements, general format"
+	},
+
+	"md-changelog": {
+		"prefix": "md-changelog",
+		"body": [
+			"### [Version X.Y.Z] - YYYY-MM-DD\n",
+			"- [Change 1]: [Description of the change]",
+			"- [Change 2]: [Description of the change]",
+			"- [Change 3]: [Description of the change]\n",
+		],
+		"description": "markdown, changelong, general format"
+	},
+
+	"md-version": {
+		"prefix": "md-version",
+		"body": [
+			"[Version ${1:X}.${2:Y}.${3:Z}]-${4:alpha}+${5:001}",
+		],
+		"description": "markdown, version convention, X: major, y: minor, z:patch, alpha: pre-release, 001: Build metadata"
+	},
+
+	"md-table": {
+		"prefix": "md-table",
+		"body": [
+			"| col1 | col2 | col3 |",
+			"|------|:----:|-----:|",
+			"| x    |  1   |  2   |",
+			"| y    |  1   |  2   |",
+			"| z    |  1   |  3   |",
+		],
+		"description": "markdown, table, general form"
+	},
+
+	"md-link": {
+		"prefix": "md-link",
+		"body": [
+			"[Text to sub-heading](#text-of-the-subheading)",
+		],
+		"description": "markdown, internal or external or anchor link syntax"
+	},
+
+	"md-img": {
+		"prefix": "md-img",
+		"body": [
+			"<img src='${1:IMAGE_URL_HERE}' alt='${2:alt_text}' title='${3:image_title}'  width='${4:300}' height='${5:300}'>",
+		],
+		"description": "markdown, insert image"
+	},
+
+	"md-vid": {
+		"prefix": "md-vid",
+		"body": [
+			"<video src='${1:path/to/video.mp4}' width='${2:320}' height='${3:240}' controls></video>",
+			"[![${1:alt_text}](${2:https://img.youtube.com/vi/video-id/0.jpg})](${3:https://www.youtube.com/watch?v=video-id})",
+		],
+		"description": "markdown, embed video by HTML video tag or markdown syntax"
+	},
+
+	"md-iframe": {
+		"prefix": "md-iframe",
+		"body": [
+			"<iframe width='${1:560}' height='${2:315}' src='${3:https://www.youtube.com/embed/video-id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+		],
+		"description": "markdown, embed video by iframe tag"
+	},
+
+	"md-latex": {
+		"prefix": "md-latex",
+		"body": [
+			"<script",
+			"\tsrc='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'",
+			"\ttype='text/javascript'>",
+			"</script>\n",			
+		],
+		"description": "markdown, enable LaTex with the support from MathJax (Jupyter notebooks come with enabled MathJAX support by default), link: https://www.fabriziomusacchio.com/blog/2021-08-10-How_to_use_LaTeX_in_Markdown/"
+	},
+
+	"md-matrix": {
+		"prefix": "md-matrix",
+		"body": [
+			"\\begin{bmatrix}",
+			"${1:a} & ${2:b} & ${3:c}\\",
+			"${4:d} & ${5:e} & ${6:f}\\",
+			"\\end{bmatrix}",
+		],
+		"description": "markdown, matrix"
+	},
+
+	"md-mathlaws": {
+		"prefix": "md-mathlaws",
+		"body": [
+			"Math laws",
+			"- [o] associative laws",
+			"- [x] communitive laws",
+			"- [x] identity element",
+			"- [o] distributive laws",
+			"- [x] additivity inverse",
+			"- [x] multiplicative",
+		],
+		"description": "markdown, math laws"
+	},
+
+	"md-stats-form": {
+		"prefix": "md-statsform",
+		"body": [
+			"<--X is a random variable with a binomial distribution-->",
+			"X ~ B(n,p)",
+		],
+		"description": "markdown, a general form of stats models"
+	},
+	
+	"md-learning": {
+		"prefix": "md-learning",
+		"body": [
+			"希曼跨界蕃茄思",
+			"R I S E",
+			"Retrieve learning, Spaced learning, Iterleave, Elaborative Interrogate",
+		],
+		"description": "markdown, make it sticks"
+	},
+	
+	"md-IATDAR": {
+		"prefix": "md-IATDAR",
+		"body": [
+			"Initial use => Abuse => Tolerance => Dependence => Addictive => Relapse",
+		],
+		"description": "markdown, IATDAR"
+	},
+	
+	"md-DABDA": {
+		"prefix": "md-DABDA",
+		"body": [
+			"Denial => Argument => Bargain => Depress => Accept",
+		],
+		"description": "markdown, DABDA"
+	},
+	
+	"md-DDSCM": {
+		"prefix": "md-DDSCM",
+		"body": [
+			"Damage => Defence => Support => Control => Mobility",
+		],
+		"description": "markdown, DDSCM"
+	},
+
+	"read-hardbook": {
+		"prefix": "read-hardbook",
+		"body": [
+			"Category: E I A S(入复分纲)",
+			"Approach:", 
+			"* (归)classify",
+			"* (X)x-ray (skimming + pre-reading)",
+			"* (达)come to terms with the author",
+			"* (信)determine the message",
+			"* (锐)criticize the book fairly",
+			"* (结)determine your own conclusion",
+		],
+		"description": "Read, How to read hard book"
+	},
+
+	"English-etymology": {
+		"prefix": "English-etymology",
+		"body": [
+			"# 印欧语音变规律",
+			"## 元音大推移:",
+			"### 1. 元音互换",
+			"* g k(c) h 互换",
+			"* d t s(c) = th 互换",
+			"* u v w 互换",
+			"* m n l r 互换",
+			"* b p m f v 互换",
+			"### 2. 词源不变 语音改变",
+			"* 词根 uni = one",
+			"* 字母 U,W 由 V 派生而来",
+			"### 3. 其他音变",
+			"* v = s = d: have has had",
+			"* s = z: ise = ize",
+			"* g = j: gab = jibe",
+			"* g = y: garden = yard",
+			"* s = h: semi = hemi",
+			"### 4. 象形字母记忆",
+			"* A = 牛角: ang, eng, ank, anch = 角",
+			"## 维尔纳定律",
+			"## R音位移",
+			"## 萨宾L",
+			"## 格林定律",
+		],
+		"description": "English, Understand Etymology"
+	},
+
+	"AI-generate-manga": {
+		"prefix": "AI-generate-manga",
+		"body": [
+			"# How to generate manga with AI",
+			"1. 确定小说主题",
+			"2. ChatGPT写小说",
+			"\t1. 【指令公式(咒语)】角色 + 文章类型 + 文字风格 + 人设 + 背景故事 + 剧情大纲",
+			"\t\t1. 角色: 你是一个顶级的网络爽文作家",
+			"\t\t2. 文章类型: 都市现代修仙文, 古风修仙情感文, 青春校园喜剧, 悬疑推理文等等",
+			"\t\t3. 文字风格: 一般复制一段参考视频的脚本或小说内容",
+			"\t\t4. 人设: 比如男女是修仙者/学生/程序员等",
+			"\t\t5. 故事背景: 比如在地球, 在学校, 在末世",
+			"\t\t6. 剧情大纲: 一个关键词",
+			"\t2. 先列出一个章节目录",
+			"\t\t1. 每章都要发生什么剧情内容",
+			"\t\t2. 主角都要遇到什么人",
+			"\t\t3. 产生了什么样的对话",
+			"\t3. ＋ 这个咒语: {将第一章展开写, 大概2000字, 有对话情节, 并且加入相应的场景描述}",
+			"3. Midjourney生角色图",
+			"\t1. 将ChatGPT生成的章节投喂给ChatGPT",
+			"\t2. 分镜咒语: {将上面这段内容分成20个部分}",
+			"\t3. 生成Midjourney咒语: {请按照我的指令, 将上面每一段生成单独英文的Midjourney prompt, 格式如下 (无标题, 以, 分割): 【生成词】 【照明效果】 【画面风格】 【画面比例ar参数】 【Seed值】 生成词: 你可以发挥想象力, 用华丽和精炼的词汇描述刚刚的场景; 照明效果: 你可以选择cinematic lighting, sunlight, 或类似的词条; 画面风格: 你可以选择anime style 或 类似的词条, 并在每一条prompt后面都加上以下内容: --ar 16:9 --seed 3402537896 (值不变, 无, 间隔)}",
+			"4. Midjourney批量生分镜图",
+			"\t1. 批量自动生图插件: AutoJourney - Auto send Midjourney prompts",
+			"5. 剪映自动生产视频",
+			"\t1. 导入Midjourney生成的分镜图",
+			"\t2. 叫Leonardo.ai去完成",
+			"\t3. 让Topaz Photo AI 2优化Leonardo.ai的视频(高清化)",
+			"\t4. 生成AI配音: 11ElevenLabs",
+			"\t5. 影音同步: Lalamu studio",
+			"\t6. 视频增强: Video Enhance AI",
+			"\t7. 去水印: BeeCut",
+			"\t8. 生成音乐: Suno",
+			"\t9. 生成主题曲: udio",
+			"6. 制定封面 & 发布",
+			"AI工具管理员(批处理)",
+			"1. Prompt.Click",
+			"2. Runway & Pika labs",
+		],
+		"description": "AI, generate Manga to earn extra $$$"
+	},
+}

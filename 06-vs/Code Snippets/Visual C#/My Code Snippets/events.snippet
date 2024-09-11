@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- general appraoch event -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>general approach event</Title>
+			<Shortcut>gevent</Shortcut>
+			<Description>Code snippet for general approach event</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>handler</ID>
+					<ToolTip>Delegate Event Handler name</ToolTip>
+					<Default>HandlerName</Default>
+				</Literal>
+				<Literal>
+					<ID>T1</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T1</Default>
+				</Literal>
+				<Literal>
+					<ID>T2</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T2</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Event name</ToolTip>
+					<Default>EventName</Default>
+				</Literal>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>EventArgs.Empty</Default>
+				</Literal>
+				<Literal>
+					<ID>U</ID>
+					<ToolTip>instance name</ToolTip>
+					<Default>EventArgs.Empty</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public delegate void $handler$<$T1$, $T2$>($T1$ arg1, $T2$ arg2);
+			public event $handler$<$T1$, $T2$>? $name$;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- customized EventArgs -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>customized EventArgs</Title>
+			<Shortcut>evtargs</Shortcut>
+			<Description>Code snippet for customized EventArgs</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>class name</ToolTip>
+					<Default>MyEventArgs</Default>
+				</Literal>
+				<Literal>
+					<ID>X</ID>
+					<ToolTip>field name</ToolTip>
+					<Default>Timestamp</Default>
+				</Literal>
+				<Literal>
+					<ID>Y</ID>
+					<ToolTip>field name</ToolTip>
+					<Default>Message</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>U</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>U</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[class $name$ : EventArgs
+			{
+				public $T$ $X$ { get; }
+				public $U$ $Y$ { get; }
+				public $name$($T$ arg1, $U$ arg2)
+				{
+					this.$X$ = arg1;
+					this.$Y$ = arg2;
+				}
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- concrete EventHandler method -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>concrete EventHandler method</Title>
+			<Shortcut>evthdlmeth</Shortcut>
+			<Description>Code snippet for concrete EventHandler method</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>void</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Specialized delegate, Concrete EventHandler Method name</ToolTip>
+					<Default>OnEventXChanged</Default>
+				</Literal>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>EventArgs</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[$R$ $name$(object sender, $T$ e)
+			{
+				throw new NotImplementedException()$end$;
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- specialized generic event -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>specialized generic event</Title>
+			<Shortcut>evtspec</Shortcut>
+			<Description>Code snippet for specialized generic event</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>MyEventArgs</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Event name</ToolTip>
+					<Default>EventName</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public event EventHandler<$T$> $name$;]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+
+</CodeSnippets>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- parallel -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>parallel</Title>
+			<Shortcut>parallel</Shortcut>
+			<Description>Code snippet for Threading.Tasks.Parallel</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>Q</ID>
+					<ToolTip>quantity name</ToolTip>
+					<Default>1_000_000</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[int[] nums = Enumerable.Range(0, $Q$).ToArray();
+			long total = 0;
+
+			// Use type parameter to make subtotal a long, not an int
+			Parallel.For<long>(0, nums.Length, () => 0,
+				(i, loop, subtotal) =>
+				{
+					subtotal += nums[i];
+					return subtotal;
+				},
+				subtotal => Interlocked.Add(ref total, subtotal));]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- pool -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pool</Title>
+			<Shortcut>pool</Shortcut>
+			<Description>Code snippet for Thread.ThreadPool</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>MethodName</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[ThreadPool.QueueUserWorkItem(new WaitCallback($MethodName$));]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

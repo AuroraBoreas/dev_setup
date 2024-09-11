@@ -1,0 +1,222 @@
+{
+	"css-concepts": {
+		"prefix": "css-concepts",
+		"body": [
+			"/* --- common pattern --- */",
+			"// CSS ruleset(SPV): Selector { property: value }",
+			"// Selector Specificity (ICE): Tag, Id, Class, Attribte, Pseudo-class, Combination(parent+child)",
+			"// Box: CSS is all about boxes",
+			"// override: more specific selector can override the more general selector; but general cannot override specific",
+			"/* --- visual rules --- */",
+			"// font family",
+			"// font size",
+			"// font weight",
+			"// text align",
+			"// (foreground) color, background color",
+			"// opacity",
+			"// background image",
+			"// important: override any style no matter how specific it is",
+			"/* --- box model --- */",
+			"// structure: margin - border - padding - content",
+			"// dimension: width, height",
+			"// direction: top - right - bottom - left",
+			"// margin clapse: It may be helpful to think of collapsing vertical margins as a short person trying to push a taller person. The tall person has longer arms and can easily push the short person, while the person with short arms cannot reach the person with long arms.",
+			"// overflow",
+			"// Visibility: `display: none` will be completely removed from the web page; `visibility: hidden` will not be visible on the web page, but the space reserved for it",
+			"/* --- flow of html --- */",
+			"// render flow: left - right, top - bottom",
+			"// position (5 properties): static, relative(参考物static), absolute(超然,被无视), fixed(viewport), sticky(float 直到特定位置)",
+			"// display: inline, block, inline-block (<em>, <strong>, and <a> are `inline` elements, 紧身衣)",
+			"// z-index: depth",
+			"// float: wrapping text around an image",
+			"// clear: left - right - both - none; specifies `how elements should behave` when they `bump into` each other on the page",
+			"/* --- color --- */",
+			"// rgba",
+			"// hsla (0-360)",
+			"/* --- Typography --- */",
+			"",
+		],
+		"description": "css, concepts"
+	},
+
+	"css-spv": {
+		"prefix": "css-spv",
+		"body": [
+			"${1:selector},$2 {",
+			"\t${3:prop}: ${4:val};",
+			"}",
+		],
+		"description": "css, selector property value"
+	},
+
+	"css-tav": {
+		"prefix": "css-tav",
+		"body": [
+			"${1:selector}[${2:attribute}*=${3:value}] {",
+			"\t$0",
+			"}",
+		],
+		"description": "css, type attribute including value"
+	},
+
+	"css-sp": {
+		"prefix": "css-sp",
+		"body": [
+			"${1:selector}:${2:pseudo-class} {",
+			"\t$0",
+			"}",
+		],
+		"description": "css, selector pseudo-class"
+	},
+
+	"css-sc": {
+		"prefix": "css-sc",
+		"body": [
+			"${1:selector}.${2:class} {",
+			"\t$0",
+			"}",
+		],
+		"description": "css, selector chaining, chain"
+	},
+
+	"css-sdc": {
+		"prefix": "css-sdc",
+		"body": [
+			"${1:selector} ${2:descendant} {",
+			"\t$0",
+			"}",
+		],
+		"description": "css, selector Descendant Combinator, tree"
+	},
+
+	"css-nth": {
+		"prefix": "css-nth",
+		"body": [
+			"${1:ul} li:nth-child(${2:odd}) {",
+			"\t$0",
+			"}",
+		],
+		"description": "css, nth-child"
+	},
+
+	"css-backgroundImg": {
+		"prefix": "css-backgroundImg",
+		"body": [
+			"background-image: url('${1:https://www.example.com/image.jpg}');",
+		],
+		"description": "css, property, background-image: v"
+	},
+
+	"css-reset-mp": {
+		"prefix": "css-reset-mp",
+		"body": [
+			"* {",
+			"\tmargin: 0;",
+			"\tpadding: 0;",
+			"\tbox-sizing: border-box;",
+			"}",
+		],
+		"description": "css, reset margin, padding, box-model of default stylesheets which come with web browser"
+	},
+
+	"css-fontface": {
+		"prefix": "css-fontface",
+		"body": [
+			"@font-face {",
+			"\tfont-family: '${1:MyParagraphFont}';",
+			"\tsrc: url('fonts/${2:Roboto}.woff2') format('woff2'),",
+			"\t\turl('fonts/$2.woff') format('woff'),",
+			"\t\turl('fonts/$2.ttf') format('truetype');",
+			"}",
+		],
+		"description": "css, font-face"
+	},
+
+	"css-var": {
+		"prefix": "css-var",
+		"body": [
+			":root {",
+			"\t--${1:var-name}: ${2:value};",
+			"}",
+			"var(--$1);",
+		],
+		"description": "css, variable, global"
+	},
+
+	"css-is": {
+		"prefix": "css-is",
+		"body": [
+			"${1:s} :${2|is,where|}($3) {",
+			"\t$0;",
+			"}",
+		],
+		"description": "css, :is | :where (specificity), descendant group"
+	},
+
+	"css-has": {
+		"prefix": "css-has",
+		"body": [
+			"${1:s} :has($2,$3) {",
+			"\t$0;",
+			"}",
+		],
+		"description": "css, :has descendant group"
+	},
+
+	"css-filter": {
+		"prefix": "css-filter",
+		"body": [
+			"filter: ${1|blur,brightness,contrast,grayscale,invert,opacity,saturate,sepia,hue-rotate,drop-shadow|}($0);",
+		],
+		"description": "css, filter"
+	},
+
+	"css-blend": {
+		"prefix": "css-blend",
+		"body": [
+			"${1|mix,background|}-blend-mode: ${2|multiple,lighten,darken,lighten,overlay,screen|};",
+		],
+		"description": "css, blend"
+	},
+
+	"css-bgclip": {
+		"prefix": "css-bgclip",
+		"body": [
+			"background-image: url($1);",
+			"background-size: ${2:cover};",
+			"${3:-webkit-}background-clip: ${4|border-box,padding-box,content-box,text|};",
+			"color: ${5:transparent};",
+		],
+		"description": "css, background-clip"
+	},
+
+	"css-bganime": {
+		"prefix": "css-bganime",
+		"body": [
+			"font-size: clamp(3rem, 15vw, 8rem);",
+			"background: linear-gradient(90deg, var(--${1:c1}), var(--${2:c2}), var(--$1)) 0 0 / var(--${3:bgSize}) var(--${4:bgNormal});",
+			"animation: ${5:kf} $6",
+		],
+		"description": "css, background-clip + animation"
+	},
+
+	"css-mask": {
+		"prefix": "css-mask",
+		"body": [
+			"${1:-webkit-}mask-image: ${2|linear,conic,radial|}-gradient(rgb($3) $0);",
+			"$1mask-size: ${4:contain};",
+			"$1mask-repeat: ${5:no-repeat};",
+			"$1mask-position: ${6:top left};",
+		],
+		"description": "css, mask"
+	},
+
+	"css-shape": {
+		"prefix": "css-shape",
+		"body": [
+			"shape-outside: ${1:url($0)};",
+		],
+		"description": "css, shape, make text to following the shape"
+	},
+
+}

@@ -1,0 +1,5 @@
+[Bookmarks]
+[Recent]
+d:\pj_00_codelib\2023_Blender\
+d:\DevEnv\MyPkg\
+d:\DevEnv\MyPkg\blender\

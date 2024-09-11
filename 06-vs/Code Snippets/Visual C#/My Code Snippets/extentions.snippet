@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+	<!-- extend class / structure -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Create Class Extensions</Title>
+			<Shortcut>xclass</Shortcut>
+			<Description>Code snippet for class Extensions</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<!-- <SnippetType>SurroundsWith</SnippetType> -->
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>T</ID>
+					<ToolTip>Target Type name</ToolTip>
+					<Default>T</Default>
+				</Literal>
+				<Literal>
+					<ID>R</ID>
+					<ToolTip>Type name</ToolTip>
+					<Default>R</Default>
+				</Literal>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Method name</ToolTip>
+					<Default>MethodName</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public static class $T$Extensions
+			{
+				public static $R$ $name$(this $T$ arg$end$)
+				{
+					throw new NotImplementedException();
+				}
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+	<!-- extend interface -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>extend interface</Title>
+            <Shortcut>gextend</Shortcut>
+            <Description>Code snippet for extend interface</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Collection.Generic</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyIEnumerable</Default>
+                </Literal>
+                <Literal>
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+                <Literal>
+                    <ID>R</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>R</Default>
+                </Literal>
+                <Literal>
+                    <ID>MethodName</ID>
+                    <ToolTip>Method name</ToolTip>
+                    <Default>Operate</Default>
+                </Literal>
+                <Literal>
+                    <ID>target</ID>
+                    <ToolTip>Class, Structure, Interface name</ToolTip>
+                    <Default>IEnumerable</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+			<![CDATA[public static class $name$Extensions
+            {
+                public static IEnumerable<R> $MethodName$<T, R>(this $target$<T> iterable)
+                {
+					throw new NotImplementedException();
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- object extensions json dump -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>object extensions json dump</Title>
+            <Shortcut>gcinfo</Shortcut>
+            <Description>Code snippet for object extensions json dump</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                    <Function>...</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[/// <summary>
+            /// Dumps the object as a json string
+            /// Can be used for logging object contents.
+            /// </summary>
+            /// <typeparam name="T">Type of the object.</typeparam>
+            /// <param name="obj">The object to dump. Can be null</param>
+            /// <param name="indent">To indent the result or not</param>
+            /// <returns>the a string representing the object content</returns>
+            public static string Dump<T>(this T obj, bool indent = false)
+            {
+                return JsonConvert.SerializeObject(obj, indent ? Formatting.Indented : Formatting.None,
+                    new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore});
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

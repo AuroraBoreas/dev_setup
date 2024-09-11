@@ -1,0 +1,174 @@
+{
+	"c-define": {
+		"prefix": "c-guard-define",
+		"body": [
+			"#ifndef ${1:ids}",
+			"#define $1",
+			"$0",
+			"#endif\n",
+		],
+		"description": "C, guards header file to generate multiple copy-paster"
+	},
+
+	"c-make-console-alive": {
+		"prefix": "c-console-alive",
+		"body": [
+			"printf(\"\\npress any key to continue..\");",
+			"getchar();",
+		],
+		"description": "C, keep console app alive until user press any key"
+	},
+
+	"c-console-read-str": {
+		"prefix": "cr-str",
+		"body": [
+			"char ${1:name}[${2:25}];",
+			"fgets($1, $2, stdin);",
+			"$1[strlen($1)-1] = '\\0';",
+		],
+		"description": "C, console read string"
+	},
+
+	"c-console-read-num": {
+		"prefix": "cr-num",
+		"body": [
+			"${1:float} ${2:x};",
+			"scanf(\"%${3:f}\", &$2);",
+		],
+		"description": "C, console read number"
+	},
+
+	"c-console-write": {
+		"prefix": "cout",
+		"body": [
+			"printf(\"${1:%d}\"$2);",
+		],
+		"description": "C, console write"
+	},
+
+	"c-function-pobm": {
+		"prefix": "pobm",
+		"body": [
+			"${1:R} ${2:methonName}(${3:T arg}) {",
+			"\treturn $0",
+			"}",
+		],
+		"description": "C, function, pobm"
+	},
+
+	"c-function-pvm": {
+		"prefix": "pvm",
+		"body": [
+			"void ${2:methonName}(${3:T arg}) {",
+			"\t$0",
+			"}",
+		],
+		"description": "C, function, pvm"
+	},
+
+	"c-array-length": {
+		"prefix": "c-array-length",
+		"body": [
+			"sizeof(${1:a})/sizeof($1[0]);",
+		],
+		"description": "C, get length of an array"
+	},
+
+	"c-struct-custom": {
+		"prefix": "c-struct-custom",
+		"body": [
+			"typedef struct {",
+			"\t$0",
+			"} ${1:StructName};",
+		],
+		"description": "C, customized struct type"
+	},
+
+	"c-enum-custom": {
+		"prefix": "c-enum-custom",
+		"body": [
+			"typedef enum {",
+			"\t$0",
+			"} ${1:EnumName};",
+		],
+		"description": "C, customized enum type"
+	},
+
+	"c-random": {
+		"prefix": "c-random",
+		"body": [
+			"srand(time(${1:seed}));",
+			"int n = rand() % ${2:upper} + ${3:lower};",
+		],
+		"description": "C, generate a random number between `lower` and `upper`"
+	},
+
+	"c-file-write": {
+		"prefix": "c-file-write",
+		"body": [
+			"FILE *f = fopen(\"${1:dat.txt}\", \"w\");",
+			"fprintf(f, \"${2:hello}\n\");",
+			"fclose(f);",
+		],
+		"description": "C, write a file"
+	},
+
+	"c-file-delete": {
+		"prefix": "c-file-delete",
+		"body": [
+			"if(remove(\"${1:dat.txt}\") == 0) {",
+			"\t$2",
+			"} else {",
+			"\t$3",
+			"}",
+		],
+		"description": "C, delete a file"
+	},
+
+	"c-file-read": {
+		"prefix": "c-file-read",
+		"body": [
+			"FILE *f = fopen(\"${1:dat.txt}\", \"r\");",
+			"if (f == NULL) { printf(\"FileNotFoundError\\n\"); return; }",
+			"else {",
+			"\tchar buffer[${2:255}];",
+			"\twhile (fgets(buffer, $2, f) != NULL)",
+			"\t{ printf(\"%s\", buffer); }",
+			"}",
+			"fclose(f);",
+		],
+		"description": "C, read a file"
+	},
+
+	"c-malloc": {
+		"prefix": "c-malloc",
+		"body": [
+			"${1:int} ${2:size} = ${3:3};",
+			"${4:T}* p = ($4*)malloc($2 * sizeof($4));",
+			"if (p == NULL) { $0; return; }",
+			"free(p);",
+			"// realloc",
+			"// calloc",
+		],
+		"description": "C, malloc"
+	},
+
+	"c-compiler-flags": {
+		"prefix": "c-compiler-flags",
+		"body": [
+			"/* build process */",
+			"// Basic(P A M L E): Preprocess, ASM, Machine code, Linker, Executable",
+			"// ",
+			"// ",
+		],
+		"description": "C, compiler, flags"
+	},
+
+	"c-macro": {
+		"prefix": "c-macro",
+		"body": [
+			"#define ${1:macroName}($2) ($3)\n",
+		],
+		"description": "C, macro, params must be separated with parenthesis ()"
+	},
+}

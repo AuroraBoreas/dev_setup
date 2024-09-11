@@ -1,0 +1,105 @@
+{
+    "[python]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.tabSize": 4
+    },
+    "editor.suggestSelection": "first",
+    "security.workspace.trust.untrustedFiles": "open",
+    "explorer.confirmDragAndDrop": false,
+    "debug.onTaskErrors": "debugAnyway",
+    "update.mode": "none",
+    "editor.fontLigatures": "none",
+    "editor.accessibilitySupport": "off",
+    "git.path": "",
+    "typescript.npm": "",
+    "npm.packageManager": "npm",
+    "workbench.iconTheme": "vscode-icons",
+    "python.venvPath": "~/.env",
+    "autoDocstring.docstringFormat": "numpy-notypes",
+    "files.autoSave": "afterDelay",
+    "screencastMode.mouseIndicatorColor": "#FFFF00",
+    "screencastMode.mouseIndicatorSize": 32,
+    "screencastMode.keyboardOverlayTimeout": 1000,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "notebook.lineNumbers": "on",
+    "vsicons.dontShowNewVersionMessage": true,
+    "python.analysis.autoImportCompletions": true,
+    "scm.inputFontSize": 16,
+    "notebook.markup.fontSize": 16,
+    "markdown.preview.fontSize": 16,
+    "debug.console.fontSize": 12,
+    "editor.fontSize": 28,
+    "editor.largeFileOptimizations": false,
+    "notebook.output.fontSize": 16,
+    "git.ignoreMissingGitWarning": true,
+    "editor.lineNumbers": "relative",
+    "screencastMode.verticalOffset": 8,
+    "jupyter.askForKernelRestart": false,
+    "extensions.ignoreRecommendations": true,
+    "django.snippets.exclude": [
+        "cms",
+        "wagtail"
+    ],
+    "debug.console.fontFamily": "'MesloLGM Nerd Font'",
+    "editor.fontFamily": "'MesloLGM Nerd Font', Consolas, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "'MesloLGM Nerd Font'",
+    "window.restoreWindows": "none",
+    "tabnine.experimentalAutoImports": true,
+    "files.autoSaveWhenNoErrors": true,
+    "editor.linkedEditing": true,
+    "files.associations": {
+        "*.rmd": "markdown"
+    },
+    "terminal.external.windowsExec": "E:\\Program\\PowerShell\\7\\pwsh.exe",
+    "settingsSync.ignoredSettings": [
+        "terminal.integrated.defaultProfile.windows"
+    ],
+    "window.zoomLevel": 1,
+    "window.newWindowDimensions": "maximized",
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/static/css",
+            "savePathReplacementPairs": null
+        }
+    ],
+    "editor.tabSize": 2,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "C_Cpp.default.intelliSenseMode": "windows-gcc-x64",
+    "C_Cpp.default.includePath": [
+        "E:\\Program\\msys64\\mingw64\\include"
+    ],
+    "C_Cpp.default.compilerPath": "E:\\Program\\msys64\\mingw64\\bin",
+    "editor.renderWhitespace": "all",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "cmake.showConfigureWithDebuggerNotification": false,
+    "terminal.explorerKind": "external",
+    "cmake.showOptionsMovedNotification": false,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
+    "screencastMode.keyboardOptions": {
+        "showKeys": false,
+        "showCommands": false,
+        "showSingleEditorCursorMoves": false
+    },
+    "terminal.integrated.fontSize": 18,
+    "code-runner.showExecutionMessage": false,
+    "code-runner.enableAppInsights": false,
+    "code-runner.clearPreviousOutput": true,
+    "editor.cursorBlinking": "solid",
+    
+}

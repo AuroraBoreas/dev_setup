@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2019/CodeSnippet">
+
+    <!-- obtain a type reference -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>obtain a type reference</Title>
+            <Shortcut>reflecttg</Shortcut>
+            <Description>Code snippet for obtain a type reference</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <!-- <SnippetType>SurroundsWith</SnippetType> -->
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name1</ID>
+                    <ToolTip>Namespace name</ToolTip>
+                    <Default>MyLibrary</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name2</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name3</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyNestedClass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[Type t = Type.GetType("$name1$.$name2$+$name3$, $name1$", false, true);
+            //(don't throw an exception if $name2$ cannot be found and ignore case)
+            //(+)nested type]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- reflect generic type -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>reflect generic type</Title>
+            <Shortcut>reflectgeneric</Shortcut>
+            <Description>Code snippet for reflect generic type</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>Dictionary</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>Q</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>2</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[Type t = Type.GetType("System.Collections.Generic.$name$`$n$", false, true);]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- System.Reflection model -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>System.Reflection model</Title>
+            <Shortcut>reflectmodel</Shortcut>
+            <Description>Code snippet for System.Reflection model</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>what</ID>
+                    <ToolTip>XXX name</ToolTip>
+                    <Default>Method</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[$what$Info[] $name$ = t.Get$what$();]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+	<!-- assembly explicit loading -->
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>assembly explicit loading</Title>
+			<Shortcut>reflectldasm</Shortcut>
+			<Description>Code snippet for assembly explicit loading</Description>
+			<Author>ZL</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>name</ID>
+					<ToolTip>library name</ToolTip>
+					<Default>XXXLibrary</Default>
+					<Function>...</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+			<![CDATA[Assembly asm = Assembly.Load("$name$");]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+
+    <!-- System.Reflection Assembly -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>System.Reflection Assembly</Title>
+            <Shortcut>reflectasm</Shortcut>
+            <Description>Code snippet for System.Reflection Assembly</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>absolute Assembly name</ToolTip>
+                    <Default>asmName</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void DisplayTypesInAsm(Assembly asm)
+            {
+                Console.WriteLine("\n***** Types in Assembly *****");
+                Console.WriteLine("->{0}", asm.FullName);
+                Type[] types = asm.GetTypes();
+                foreach (Type t in types)
+                Console.WriteLine("Type: {0}", t);
+                Console.WriteLine("");
+            }
+            
+            Assembly asm = Assembly.LoadFrom($name$);
+            Type[] types = asm.GetTypes();
+            //general form of Assembly: Name(,Version = major.minor.build.revision) (,Culture = culture token) (, PublicKeyToken = public key token)
+            //var asm = Assembly.Load(@"CarLibrary, Version=1.0.0.0, PublicKeyToken=null, Culture=""");
+            ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- reflect on shared assembly -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>reflect on shared assembly</Title>
+            <Shortcut>reflectsharedasm</Shortcut>
+            <Description>Code snippet for reflect on shared assembly</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[private static void DisplaySharedAssemblyInfo(Assembly a)
+            {
+                Console.WriteLine("***** Info about Assembly *****");
+                Console.WriteLine("Loaded from GAC? {0}", a.GlobalAssemblyCache);
+                Console.WriteLine("Asm Name: {0}", a.GetName().Name);
+                Console.WriteLine("Asm Version: {0}", a.GetName().Version);
+                Console.WriteLine("Asm Culture: {0}",
+                a.GetName().CultureInfo.DisplayName);
+                Console.WriteLine("\nHere are the public enums:");
+                //Use a LINQ query to find the public enums.
+                Type[] types = a.GetTypes();
+                var publicEnums = from pe in types where pe.IsEnum &&
+                pe.IsPublic select pe;
+                foreach (var pe in publicEnums)
+                {
+                    Console.WriteLine(pe);
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- reflect on methods -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>reflect on methods</Title>
+            <Shortcut>reflectmethods</Shortcut>
+            <Description>Code snippet for reflect on methods</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ListMethods(Type t)
+            {
+                Console.WriteLine("***** Methods *****");
+                var methodNames = from n in t.GetMethods() select n.Name;
+                string retVal, paramInfo;
+                foreach (var name in methodNames)
+                {
+                    Console.WriteLine("->{0}", name);
+                    retVal = m.ReturnType.FullName;
+                    paramInfo = "( ";
+                    foreach (ParameterInfo pi in m.GetParameters())
+                        paramInfo += string.Format("{0} {1} ", pi.ParameterType, pi.Name);
+                    paramInfo += " )";
+                    Console.WriteLine("->{0} {1} {2}", retVal, m.Name, paramInfo);
+                }
+                Console.WriteLine();
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- reflect on properties -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>reflect on properties</Title>
+            <Shortcut>reflectprop</Shortcut>
+            <Description>Code snippet for reflect on properties</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ListProps(Type t)
+            {
+                Console.WriteLine("***** Properties *****");
+                var propNames = from p in t.GetProperties() select p.Name;
+                foreach (var name in propNames)
+                Console.WriteLine("->{0}", name);
+                Console.WriteLine();
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- reflect on interface -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>reflect on interface</Title>
+            <Shortcut>reflectinterface</Shortcut>
+            <Description>Code snippet for reflect on interface</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ListInterfaces(Type t)
+            {
+                Console.WriteLine("***** Interfaces *****");
+                var ifaces = from i in t.GetInterfaces() select i;
+                foreach(Type i in ifaces)
+                Console.WriteLine("->{0}", i.Name);
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- reflect on stats -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>reflect on stats</Title>
+            <Shortcut>reflectstats</Shortcut>
+            <Description>Code snippet for reflect on stats</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ListVariousStats(Type t)
+            {
+                Console.WriteLine("***** Various Statistics *****");
+                Console.WriteLine("Base class is: {0}", t.BaseType);
+                Console.WriteLine("Is type abstract? {0}", t.IsAbstract);
+                Console.WriteLine("Is type sealed? {0}", t.IsSealed);
+                Console.WriteLine("Is type generic? {0}", t.IsGenericTypeDefinition);
+                Console.WriteLine("Is type a class type? {0}", t.IsClass);
+                Console.WriteLine();
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- late binding assembly -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>late binding assembly</Title>
+            <Shortcut>reflectlatebind</Shortcut>
+            <Description>Code snippet for late binding assembly</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>path</ID>
+                    <ToolTip>Assembly path</ToolTip>
+                    <Default>CarLibrary.MiniVan</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void CreateUsingLateBinding(Assembly asm)
+            {
+                //Dont add a reference to CarLibrary.dll using Visual Studio for this example!
+                //otherwiase Compiler will know this assembly
+                //the whole point of late binding is to create instances of objects for which there is no compile-time knowledge. 
+                try
+                {
+                    //Get metadata for the Minivan type.
+                    Type miniVan = asm.GetType("$path$");
+                    //Create the Minivan on the fly.
+                    object obj = Activator.CreateInstance(miniVan);
+                    Console.WriteLine("Created a {0} using late binding!", obj);
+                    //Get info for TurboBoost.
+                    MethodInfo mi = miniVan.GetMethod("TurboBoost");
+                    //Invoke method ('null' for no parameters).
+                    mi.Invoke(obj, null);
+                    //Invoke method (with arguments)
+                    mi.Invoke(obj, new object[] { true, 2 });
+                    //Or leverage dynamic
+                    //dynamic obj = ctivator.CreateInstance(miniVan);
+                    //obj.TurboBoost();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- Attribute -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Attribute</Title>
+            <Shortcut>attradd</Shortcut>
+            <Description>Code snippet for Attribute</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name1</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>Serializable</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>name2</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>Obsolete</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[[$name1$, $name2$]
+            ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- customize Attribute -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>customize Attribute</Title>
+            <Shortcut>attrcustomize</Shortcut>
+            <Description>Code snippet for customize Attribute</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>what</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>myClass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
+            public sealed class $name$Attribute : System.Attribute
+            {
+                public string Description { get; set; }
+                public $name$Attribute(string $what$Description) => Description = $what$Description;
+                public $name$Attribute(){ }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- possible targets of an attribute -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>possible targets of an attribute</Title>
+            <Shortcut>attrtargets</Shortcut>
+            <Description>Code snippet for possible targets of an attribute</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>T</ID>
+                    <ToolTip>Type name</ToolTip>
+                    <Default>T</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[public enum AttributeTargets
+            {
+                All, Assembly, Class, Constructor,
+                Delegate, Enum, Event, Field, GenericParameter,
+                Interface, Method, Module, Parameter,
+                Property, ReturnValue, Struct
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- attribute all assembly types -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>attribute all assembly types</Title>
+            <Shortcut>attrasm</Shortcut>
+            <Description>Code snippet for attribute all assembly types</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Attribute name</ToolTip>
+                    <Default>CLSCompliant</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[[assembly: $name$(true)]]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- attribute reader early binding -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>attribute reader early binding</Title>
+            <Shortcut>attrreaderearlybinding</Shortcut>
+            <Description>Code snippet for attribute reader early binding</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Default>MyClass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ReflectOnAttributesUsingEarlyBinding()
+            {
+                // Get a Type representing the $name$.
+                Type t = typeof($name$);
+                // Get all attributes on the $name$.
+                object[] customAtts = t.GetCustomAttributes(false);
+                foreach (var v in customAtts)
+                    Console.WriteLine("-> {0}\n", v.Description);
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+    <!-- attribute reader late binding -->
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>attribute reader late binding</Title>
+            <Shortcut>attrreaderlatebinding</Shortcut>
+            <Description>Code snippet for attribute reader late binding</Description>
+            <Author>ZL</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>System.Reflection</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal Editable="true">
+                    <ID>name</ID>
+                    <ToolTip>Assembly name</ToolTip>
+                    <Default>MyAssembly</Default>
+                </Literal>
+                <Literal Editable="true">
+                    <ID>attr</ID>
+                    <ToolTip>Attribute name</ToolTip>
+                    <Default>MyClassAttribute</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+            <![CDATA[static void ReflectAttributesUsingLateBinding()
+            {
+                try
+                {
+                    // Load the local copy of $name$.
+                    Assembly asm = Assembly.Load("$name$");
+                    // Get type info of $attr$.
+                    Type desc = asm.GetType("$name$.$attr$");
+                    // Get type info of the Description property.
+                    PropertyInfo propDesc = desc.GetProperty("Description");
+                    // Get all types in the assembly.
+                    Type[] types = asm.GetTypes();
+                    // Iterate over each type and obtain any $attr$s.
+                    foreach (Type t in types)
+                    {
+                        object[] objs = t.GetCustomAttributes(desc, false);
+                        foreach (object o in objs)
+                            Console.WriteLine("-> {0}: {1}\n", t.Name, propDesc.GetValue(o, null));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+
+
+</CodeSnippets>

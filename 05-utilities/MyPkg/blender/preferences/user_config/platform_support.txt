@@ -1,0 +1,1 @@
+{Intel/Intel(R) UHD Graphics 620/4.5.0 - Build 27.20.100.8854}=SUPPORTED
